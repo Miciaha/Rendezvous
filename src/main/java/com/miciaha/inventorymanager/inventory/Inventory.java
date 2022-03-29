@@ -37,11 +37,10 @@ public class Inventory {
         ObservableList<Part> newList = FXCollections.observableArrayList();
 
         for(Part part: allParts){
-            if(part.getName().equals(partName)){
+            if(part.getName().startsWith(partName)){
                 newList.add(part);
             }
         }
-
         return newList;
     }
 
@@ -49,7 +48,7 @@ public class Inventory {
         ObservableList<Product> newList = FXCollections.observableArrayList();
 
         for(Product product: allProducts){
-            if(product.getName().equals(productName)){
+            if(product.getName().startsWith(productName)){
                 newList.add(product);
             }
         }

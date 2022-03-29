@@ -6,6 +6,9 @@ import com.miciaha.inventorymanager.inventory.Product;
 import com.miciaha.inventorymanager.inventory.parts.InHouse;
 import com.miciaha.inventorymanager.inventory.parts.Part;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -17,6 +20,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -90,11 +94,6 @@ public class InventoryViewController implements Initializable {
         partsTable.setItems(Inventory.getAllParts());
         productsTable.setItems(Inventory.getAllProducts());
 
-        Part part1 = new InHouse(1, "Test1", 2.22, 3, 5, 2, 3);
-        Product product1 = new Product(1, "Test2", 43.23, 10, 0, 10);
-        Inventory.addPart(part1);
-        Inventory.addProduct(product1);
-
         prodIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         prodNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         prodLevelCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
@@ -105,10 +104,42 @@ public class InventoryViewController implements Initializable {
         partLevelCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         partPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
 
-        btnDeletePart.setOnAction(new DeletePartButtonHandler());
         btnAddPart.setOnAction(new AddPartButtonHandler());
         btnModifyPart.setOnAction(new ModifyPartButtonHandler());
+        btnDeletePart.setOnAction(new DeletePartButtonHandler());
+
+        btnAddProduct.setOnAction(new AddProductButtonHandler());
+        btnModifyProduct.setOnAction(new ModifyProductButtonHandler());
+        btnDeleteProduct.setOnAction(new DeleteProductButtonHandler());
+
+        tfSearchParts.textProperty().addListener(new SearchPartsEventHandler());
+        tfSearchProducts.textProperty().addListener(new SearchProductsEventHandler());
+
         btnExit.setOnAction(new ExitButtonHandler());
+    }
+
+    private class SearchPartsEventHandler implements ChangeListener<String> {
+        @Override
+        public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+            if(t1.trim().isEmpty()){
+                partsTable.setItems(Inventory.getAllParts());
+            } else{
+                ObservableList<Part> foundPartsList = Inventory.lookupPart(t1);
+                partsTable.setItems(foundPartsList);
+            }
+        }
+    }
+
+    private class SearchProductsEventHandler implements ChangeListener<String>{
+        @Override
+        public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+            if(t1.trim().isEmpty()){
+                productsTable.setItems(Inventory.getAllProducts());
+            } else{
+                ObservableList<Product> foundProductsList = Inventory.lookupProduct(t1);
+                productsTable.setItems(foundProductsList);
+            }
+        }
     }
 
     private class AddPartButtonHandler implements EventHandler<ActionEvent>{
@@ -123,14 +154,65 @@ public class InventoryViewController implements Initializable {
                 e.printStackTrace();
             }
             anchorPane.getChildren().add(parent);
+        }
+    }
 
+    private class AddProductButtonHandler implements EventHandler<ActionEvent>{
+        @Override
+        public void handle(ActionEvent event){
+            anchorPane.getChildren().clear();
+            FXMLLoader loader = new FXMLLoader(InventoryApplication.class.getResource("product-view.fxml"));
+            Parent parent = null;
+            try {
+                parent = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            anchorPane.getChildren().add(parent);
         }
     }
 
     private class ModifyPartButtonHandler implements EventHandler<ActionEvent>{
         @Override
         public void handle(ActionEvent event){
-// TODO: Pass table focus to PartViewController
+            Part part = partsTable.getFocusModel().getFocusedItem();
+
+            if (!(part == null)){
+                anchorPane.getChildren().clear();
+                FXMLLoader loader = new FXMLLoader(InventoryApplication.class.getResource("part-view.fxml"));
+                Parent parent = null;
+                try {
+                    parent = loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                PartViewController controller = loader.getController();
+                controller.initData(part);
+                anchorPane.getChildren().add(parent);
+            }
+        }
+    }
+
+    private class ModifyProductButtonHandler implements EventHandler<ActionEvent>{
+        @Override
+        public void handle(ActionEvent event){
+            Product product = productsTable.getFocusModel().getFocusedItem();
+
+            if(!(product == null)){
+                anchorPane.getChildren().clear();
+                FXMLLoader loader = new FXMLLoader(InventoryApplication.class.getResource("product-view.fxml"));
+                Parent parent = null;
+                try {
+                    parent = loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                ProductViewController controller = loader.getController();
+                controller.initData(product);
+                anchorPane.getChildren().add(parent);
+            }
         }
     }
 
@@ -141,7 +223,14 @@ public class InventoryViewController implements Initializable {
         }
     }
 
-    private class ExitButtonHandler implements EventHandler<ActionEvent>{
+    private class DeleteProductButtonHandler implements EventHandler<ActionEvent>{
+        @Override
+        public void handle(ActionEvent event){
+            Inventory.deleteProduct(productsTable.getFocusModel().getFocusedItem());
+        }
+    }
+
+    static private class ExitButtonHandler implements EventHandler<ActionEvent>{
         @Override
         public void handle(ActionEvent event){
             Platform.exit();

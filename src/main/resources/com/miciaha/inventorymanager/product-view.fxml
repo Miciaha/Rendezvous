@@ -1,14 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.miciaha.inventorymanager.controllers.ProductViewController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane fx:id="anchorPane" prefHeight="490.0" prefWidth="903.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.miciaha.inventorymanager.controllers.ProductViewController">
+   <children>
+      <TableView fx:id="partsTable" layoutX="452.0" layoutY="30.0" prefHeight="163.0" prefWidth="381.0">
+        <columns>
+          <TableColumn fx:id="partIdCol" prefWidth="56.0" text="Part ID" />
+          <TableColumn fx:id="partNameCol" prefWidth="111.0" text="Part Name" />
+            <TableColumn fx:id="partStockCol" prefWidth="100.0" text="Inventory Level" />
+            <TableColumn fx:id="partPriceCol" prefWidth="113.0" text="Price/Cost per Unit" />
+        </columns>
+      </TableView>
+      <TableView fx:id="productPartTable" layoutX="452.0" layoutY="245.0" prefHeight="163.0" prefWidth="381.0">
+         <columns>
+            <TableColumn fx:id="prodPartIdCol" prefWidth="56.0" text="Part ID" />
+            <TableColumn fx:id="prodPartNameCol" prefWidth="111.0" text="Part Name" />
+            <TableColumn fx:id="prodPartStockCol" prefWidth="100.0" text="Inventory Level" />
+            <TableColumn fx:id="prodPartPriceCol" prefWidth="113.0" text="Price/Cost per Unit" />
+         </columns>
+      </TableView>
+      <TextField fx:id="prodIdText" disable="true" editable="false" layoutX="104.0" layoutY="65.0" />
+      <TextField fx:id="prodNameText" layoutX="104.0" layoutY="112.0" />
+      <TextField fx:id="prodInvText" layoutX="104.0" layoutY="168.0" prefHeight="25.0" prefWidth="78.0" />
+      <TextField fx:id="prodPriceText" layoutX="104.0" layoutY="220.0" prefHeight="25.0" prefWidth="78.0" />
+      <TextField fx:id="prodMaxText" layoutX="104.0" layoutY="274.0" prefHeight="25.0" prefWidth="78.0" />
+      <TextField fx:id="prodMinText" layoutX="227.0" layoutY="274.0" prefHeight="25.0" prefWidth="78.0" />
+      <Label layoutX="33.0" layoutY="69.0" text="ID" />
+      <Label layoutX="25.0" layoutY="116.0" text="Name" />
+      <Label layoutX="27.0" layoutY="172.0" text="Inventory" />
+      <Label layoutX="27.0" layoutY="224.0" text="Price" />
+      <Label layoutX="25.0" layoutY="278.0" text="Max" />
+      <Label layoutX="190.0" layoutY="278.0" text="Min" />
+      <Button fx:id="addPartBtn" layoutX="747.0" layoutY="208.0" mnemonicParsing="false" text="Add" />
+      <Button fx:id="removePartBtn" layoutX="689.0" layoutY="417.0" mnemonicParsing="false" text="Remove Associated Part" />
+      <Button fx:id="saveProductBtn" layoutX="706.0" layoutY="451.0" mnemonicParsing="false" text="Save" />
+      <Button fx:id="cancelProductBtn" layoutX="785.0" layoutY="451.0" mnemonicParsing="false" text="Cancel" />
+   </children>
 </AnchorPane>

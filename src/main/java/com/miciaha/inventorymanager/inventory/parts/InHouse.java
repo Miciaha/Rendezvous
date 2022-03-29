@@ -1,6 +1,6 @@
 package com.miciaha.inventorymanager.inventory.parts;
 
-public class InHouse extends Part{
+public class InHouse extends Part implements PartType {
     private int machineId;
 
     public InHouse(int id, String name, double price, int stock, int min, int max, int machineId) {
@@ -14,5 +14,9 @@ public class InHouse extends Part{
 
     public int getMachineId(){
         return machineId;
+    }
+
+    public String getTypeDetail(){
+        return String.valueOf(machineId);
     }
 }
