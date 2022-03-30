@@ -35,13 +35,13 @@ Inventory management application created using JavaFX.
 #### Demonstrate Concepts
 |    | Concept  | Notes |
 |----|-------|-------|
-| | Inheritance | |
-| | Abstract classes | |
-| | Concrete classes | |
-| | Instance variables | |
-| | Static variables | |
-| | Instance methods | |
-| | Static methods | |
+|:heavy_check_mark:| Inheritance | |
+|:heavy_check_mark:| Abstract classes | |
+|:heavy_check_mark:| Concrete classes | |
+|:heavy_check_mark:| Instance variables | |
+|:heavy_check_mark:| Static variables | |
+|| Instance methods | |
+|:heavy_check_mark:| Static methods | |
 
 ### D. Add functionality to the main form
 
