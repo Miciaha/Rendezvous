@@ -1,33 +1,32 @@
 package com.miciaha.inventorymanager.controllers;
 
-import com.miciaha.inventorymanager.InventoryApplication;
-import com.miciaha.inventorymanager.inventory.Inventory;
-import com.miciaha.inventorymanager.inventory.Product;
-import com.miciaha.inventorymanager.inventory.parts.InHouse;
-import com.miciaha.inventorymanager.inventory.parts.Part;
-import javafx.application.Platform;
+import com.miciaha.inventorymanager.interfaces.InventoryItem;
+import com.miciaha.inventorymanager.inventoryitems.Inventory;
+import com.miciaha.inventorymanager.inventoryitems.Product;
+import com.miciaha.inventorymanager.inventoryitems.parts.Part;
+import com.miciaha.inventorymanager.utilities.Alerts;
+import com.miciaha.inventorymanager.utilities.FormManager;
+import com.miciaha.inventorymanager.utilities.TableManager;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static com.miciaha.inventorymanager.utilities.FormManager.*;
+
 public class InventoryViewController implements Initializable {
+    private final int partViewSizeX = 300;
+    private final int partViewSizeY = 550;
+    private final int productViewSizeX = 820;
+    private final int productViewSizeY = 650;
 
     @FXML
     public TableView<Part> partsTable;
@@ -66,7 +65,7 @@ public class InventoryViewController implements Initializable {
     public TableColumn<Product, String> prodNameCol;
 
     @FXML
-    public TableColumn<Product, Integer> prodLevelCol;
+    public TableColumn<Product, Integer> prodStockCol;
 
     @FXML
     public TableColumn<Product, Double> prodPriceCol;
@@ -78,7 +77,7 @@ public class InventoryViewController implements Initializable {
     public TableColumn<Part, String> partNameCol;
 
     @FXML
-    public TableColumn<Part, Integer> partLevelCol;
+    public TableColumn<Part, Integer> partStockCol;
 
     @FXML
     public TableColumn<Part, Double> partPriceCol;
@@ -89,20 +88,19 @@ public class InventoryViewController implements Initializable {
     @FXML
     public AnchorPane anchorPane;
 
+    @FXML
+    public Label partTableLabel;
+
+    @FXML
+    public Label productTableLabel;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         partsTable.setItems(Inventory.getAllParts());
         productsTable.setItems(Inventory.getAllProducts());
 
-        prodIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-        prodNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-        prodLevelCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
-        prodPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
-
-        partIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-        partNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-        partLevelCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
-        partPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+        TableManager.PartTable.linkFields(partIdCol,partNameCol, partStockCol,partPriceCol);
+        TableManager.ProductTable.linkFields(prodIdCol,prodNameCol,prodStockCol,prodPriceCol);
 
         btnAddPart.setOnAction(new AddPartButtonHandler());
         btnModifyPart.setOnAction(new ModifyPartButtonHandler());
@@ -112,8 +110,8 @@ public class InventoryViewController implements Initializable {
         btnModifyProduct.setOnAction(new ModifyProductButtonHandler());
         btnDeleteProduct.setOnAction(new DeleteProductButtonHandler());
 
-        tfSearchParts.textProperty().addListener(new SearchPartsEventHandler());
-        tfSearchProducts.textProperty().addListener(new SearchProductsEventHandler());
+        tfSearchParts.textProperty().addListener(new TableManager.SearchPartTableField(partTableLabel, partsTable));
+        tfSearchProducts.textProperty().addListener(new TableManager.SearchProductTableField(productTableLabel, productsTable));
 
         btnExit.setOnAction(new ExitButtonHandler());
     }
@@ -131,6 +129,7 @@ public class InventoryViewController implements Initializable {
     }
 
     private class SearchProductsEventHandler implements ChangeListener<String>{
+
         @Override
         public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
             if(t1.trim().isEmpty()){
@@ -145,73 +144,47 @@ public class InventoryViewController implements Initializable {
     private class AddPartButtonHandler implements EventHandler<ActionEvent>{
         @Override
         public void handle(ActionEvent event){
-            anchorPane.getChildren().clear();
-            FXMLLoader loader = new FXMLLoader(InventoryApplication.class.getResource("part-view.fxml"));
-            Parent parent = null;
-            try {
-                parent = loader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            anchorPane.getChildren().add(parent);
+            new FormManager.Form(btnAddPart, "part-view.fxml", "Add Part Form", "main.css",
+                    partViewSizeX, partViewSizeY)
+                                     .openForm();
         }
     }
 
-    private class AddProductButtonHandler implements EventHandler<ActionEvent>{
+    private class AddProductButtonHandler implements EventHandler<ActionEvent> {
         @Override
-        public void handle(ActionEvent event){
-            anchorPane.getChildren().clear();
-            FXMLLoader loader = new FXMLLoader(InventoryApplication.class.getResource("product-view.fxml"));
-            Parent parent = null;
-            try {
-                parent = loader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            anchorPane.getChildren().add(parent);
+        public void handle(ActionEvent event) {
+            new FormManager.Form(btnAddProduct, "product-view.fxml", "Add Product Form", "main.css",
+                    productViewSizeX, productViewSizeY)
+                                     .openForm();
         }
     }
 
     private class ModifyPartButtonHandler implements EventHandler<ActionEvent>{
         @Override
         public void handle(ActionEvent event){
-            Part part = partsTable.getFocusModel().getFocusedItem();
+            Part selectedPart = partsTable.getFocusModel().getFocusedItem();
 
-            if (!(part == null)){
-                anchorPane.getChildren().clear();
-                FXMLLoader loader = new FXMLLoader(InventoryApplication.class.getResource("part-view.fxml"));
-                Parent parent = null;
-                try {
-                    parent = loader.load();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                PartViewController controller = loader.getController();
-                controller.initData(part);
-                anchorPane.getChildren().add(parent);
+            if(selectedPart == null){
+                Alerts.CustomAlert.createErrorAlert("edit");
+            }else{
+                new FormManager.EditForm<>(btnModifyPart, "part-view.fxml","Modify Part Form", "main.css",
+                        partViewSizeX, partViewSizeY, selectedPart)
+                        .openEditForm();
             }
         }
     }
 
-    private class ModifyProductButtonHandler implements EventHandler<ActionEvent>{
+    private class ModifyProductButtonHandler implements EventHandler<ActionEvent> {
         @Override
-        public void handle(ActionEvent event){
-            Product product = productsTable.getFocusModel().getFocusedItem();
+        public void handle(ActionEvent event) {
+            Product selectedProduct = productsTable.getFocusModel().getFocusedItem();
 
-            if(!(product == null)){
-                anchorPane.getChildren().clear();
-                FXMLLoader loader = new FXMLLoader(InventoryApplication.class.getResource("product-view.fxml"));
-                Parent parent = null;
-                try {
-                    parent = loader.load();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                ProductViewController controller = loader.getController();
-                controller.initData(product);
-                anchorPane.getChildren().add(parent);
+            if (selectedProduct == null) {
+                Alerts.CustomAlert.createErrorAlert("edit");
+            } else {
+                new FormManager.EditForm<>(btnModifyProduct, "product-view.fxml", "Modify Part Form", "main.css",
+                        productViewSizeX, productViewSizeY, selectedProduct)
+                        .openEditForm();
             }
         }
     }
@@ -219,21 +192,23 @@ public class InventoryViewController implements Initializable {
     private class DeletePartButtonHandler implements EventHandler<ActionEvent>{
         @Override
         public void handle(ActionEvent event){
-            Inventory.deletePart(partsTable.getFocusModel().getFocusedItem());
+            Part selectedPart = partsTable.getFocusModel().getFocusedItem();
+            deleteInventoryItem((InventoryItem) selectedPart);
         }
     }
 
     private class DeleteProductButtonHandler implements EventHandler<ActionEvent>{
         @Override
         public void handle(ActionEvent event){
-            Inventory.deleteProduct(productsTable.getFocusModel().getFocusedItem());
+            Product selectedProd = productsTable.getFocusModel().getFocusedItem();
+            deleteInventoryItem(selectedProd);
         }
     }
 
-    static private class ExitButtonHandler implements EventHandler<ActionEvent>{
+    private class ExitButtonHandler implements EventHandler<ActionEvent>{
         @Override
         public void handle(ActionEvent event){
-            Platform.exit();
+            FormManager.closeForm(btnExit);
             System.exit(0);
         }
     }
