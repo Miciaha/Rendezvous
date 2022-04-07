@@ -4,13 +4,45 @@ import javafx.scene.control.Button;
 
 import java.util.ArrayList;
 
+/**
+ * The type Field tracker takes an array of FormFields to track.
+ * FormFields are linked to a button in the form and validated based on the FieldType value.
+ * The linked button is disabled until all the linked fields are valid.
+ *
+ * FUTURE_ENHANCEMENT create a more robust solution identify that the form is to be edited.
+ *
+ */
 public class FieldTracker {
+    /**
+     * The type Fields.
+     */
     public static class Fields {
+        /**
+         * The constant trackedFormFields.
+         */
         public static ArrayList<FormField> trackedFormFields = new ArrayList<>();
+        /**
+         * The constant linkedButton.
+         */
         public static Button linkedButton = new Button();
+        /**
+         * The constant validFields.
+         */
         public static int validFields = 0;
+        /**
+         * The constant fieldCount.
+         */
         public static int fieldCount = 0;
 
+        /**
+         * Add FormField to the list of tracked fields.
+         *
+         * @LOGIC_ERROR The field tracker would disable itself when switching between the MachineID and CompanyName fields.
+         * The issue was caused due to too many fields being tracked. To fix this, I made sure that the only fields being tracked
+         * where the fields that were visible upon initiation.
+         *
+         * @param field the FormField
+         */
         public static void add(FormField field) {
             trackedFormFields.add(field);
 
@@ -37,11 +69,19 @@ public class FieldTracker {
             }
         }
 
+        /**
+         * Link to tracked fields to a button. The button will be disabled until all tracked fields are valid.
+         *
+         * @param button the button
+         */
         public static void linkToButton(Button button) {
             linkedButton = button;
             button.disableProperty().setValue(true);
         }
 
+        /**
+         * Clear and reset field tracker.
+         */
         public static void clear() {
             if (!trackedFormFields.isEmpty()) {
                 trackedFormFields.clear();
@@ -51,11 +91,17 @@ public class FieldTracker {
             }
         }
 
+        /**
+         * Add valid fields found in form.
+         */
         public static void addValidFields() {
             validFields = validFields + 1;
             checkFields();
         }
 
+        /**
+         * Decrease valid fields found in form.
+         */
         public static void decreaseValidFields() {
             validFields = validFields - 1;
             checkFields();
@@ -65,6 +111,9 @@ public class FieldTracker {
             linkedButton.disableProperty().setValue(fieldCount != validFields);
         }
 
+        /**
+         * Edit fields method informs FieldTracker that the form has already been validated and is set for editing.
+         */
         public static void editFields() {
             validFields = fieldCount;
         }

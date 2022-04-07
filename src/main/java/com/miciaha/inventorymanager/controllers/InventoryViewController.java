@@ -20,6 +20,15 @@ import javafx.scene.layout.AnchorPane;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
+/**
+ * The InventoryViewController manages the main application view.
+ * By using the JavaFX Initializable interface, the controller is able to set
+ * the necessary table links and button managers.
+ *
+ * @author Miciaha Ivey
+ * FUTURE_ENHANCEMENT
+ */
 public class InventoryViewController implements Initializable {
     @FXML
     public TableView<Part> partsTable;
@@ -109,6 +118,10 @@ public class InventoryViewController implements Initializable {
         btnExit.setOnAction(new ExitButtonHandler());
     }
 
+    /**
+     * The AddPartButtonHandler opens the form to create a new part.
+     * The button pressed is passed to reference the current stage.
+     */
     private class AddPartButtonHandler implements EventHandler<ActionEvent>{
         @Override
         public void handle(ActionEvent event){
@@ -116,6 +129,10 @@ public class InventoryViewController implements Initializable {
         }
     }
 
+    /**
+     * The AddProductButtonHandler opens the form to create a new product.
+     * The button pressed is passed to reference the current stage.
+     */
     private class AddProductButtonHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
@@ -123,6 +140,10 @@ public class InventoryViewController implements Initializable {
         }
     }
 
+    /**
+     * The ModifyPartButtonHandler opens the form to modify the part selected.
+     * If there is no part selected, an alert is thrown to the user.
+     */
     private class ModifyPartButtonHandler implements EventHandler<ActionEvent>{
         @Override
         public void handle(ActionEvent event){
@@ -136,6 +157,10 @@ public class InventoryViewController implements Initializable {
         }
     }
 
+    /**
+     * The ModifyProductButtonHandler opens the form to modify the product selected.
+     * If there is no product selected an error is thrown.
+     */
     private class ModifyProductButtonHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
@@ -149,6 +174,10 @@ public class InventoryViewController implements Initializable {
         }
     }
 
+    /**
+     * The DeletePartButtonHandler runs the delete command to remove a part from Inventory.
+     * If the part is related to any product, an error is thrown to the user.
+     */
     private class DeletePartButtonHandler implements EventHandler<ActionEvent>{
         @Override
         public void handle(ActionEvent event){
@@ -177,6 +206,9 @@ public class InventoryViewController implements Initializable {
         }
     }
 
+    /**
+     * The DeleteProductButtonHandler runs the delete product command to remove a product from Inventory.
+     */
     private class DeleteProductButtonHandler implements EventHandler<ActionEvent>{
         @Override
         public void handle(ActionEvent event){
@@ -185,6 +217,9 @@ public class InventoryViewController implements Initializable {
         }
     }
 
+    /**
+     * The ExitButtonHandler closes the main form and stops the application from running.
+     */
     private class ExitButtonHandler implements EventHandler<ActionEvent>{
         @Override
         public void handle(ActionEvent event){

@@ -3,6 +3,9 @@ import com.miciaha.inventorymanager.inventoryitems.entities.parts.Part;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/**
+ * The type Product.
+ */
 public class Product  {
     private final ObservableList<Part> associatedParts =  FXCollections.observableArrayList();
     private int id;
@@ -12,6 +15,16 @@ public class Product  {
     private int min;
     private int max;
 
+    /**
+     * Instantiates a new Product.
+     *
+     * @param id    the id
+     * @param name  the name
+     * @param price the price
+     * @param stock the stock
+     * @param min   the min
+     * @param max   the max
+     */
     public Product(int id, String name, double price, int stock, int min, int max){
         this.id = id;
         this.name = name;
@@ -22,6 +35,8 @@ public class Product  {
     }
 
     /**
+     * Gets id.
+     *
      * @return the id
      */
     public int getId() {
@@ -29,6 +44,8 @@ public class Product  {
     }
 
     /**
+     * Sets id.
+     *
      * @param id the id to set
      */
     public void setId(int id) {
@@ -36,6 +53,8 @@ public class Product  {
     }
 
     /**
+     * Gets name.
+     *
      * @return the name
      */
     public String getName() {
@@ -43,6 +62,8 @@ public class Product  {
     }
 
     /**
+     * Sets name.
+     *
      * @param name the name to set
      */
     public void setName(String name) {
@@ -50,6 +71,8 @@ public class Product  {
     }
 
     /**
+     * Gets price.
+     *
      * @return the price
      */
     public double getPrice() {
@@ -57,6 +80,8 @@ public class Product  {
     }
 
     /**
+     * Sets price.
+     *
      * @param price the price to set
      */
     public void setPrice(double price) {
@@ -64,6 +89,8 @@ public class Product  {
     }
 
     /**
+     * Gets stock.
+     *
      * @return the stock
      */
     public int getStock() {
@@ -71,6 +98,8 @@ public class Product  {
     }
 
     /**
+     * Sets stock.
+     *
      * @param stock the stock to set
      */
     public void setStock(int stock) {
@@ -78,6 +107,8 @@ public class Product  {
     }
 
     /**
+     * Gets min.
+     *
      * @return the min
      */
     public int getMin() {
@@ -85,6 +116,8 @@ public class Product  {
     }
 
     /**
+     * Sets min.
+     *
      * @param min the min to set
      */
     public void setMin(int min) {
@@ -92,6 +125,8 @@ public class Product  {
     }
 
     /**
+     * Gets max.
+     *
      * @return the max
      */
     public int getMax() {
@@ -99,20 +134,37 @@ public class Product  {
     }
 
     /**
+     * Sets max.
+     *
      * @param max the max to set
      */
     public void setMax(int max) {
         this.max = max;
     }
 
+    /**
+     * Add associated part.
+     *
+     * @param part the part
+     */
     public void addAssociatedPart(Part part){
         associatedParts.add(part);
     }
 
+    /**
+     * Delete associated part.
+     *
+     * @param part the part
+     */
     public void deleteAssociatedPart(Part part){
         associatedParts.remove(part);
     }
 
+    /**
+     * Get all associated parts observable list.
+     *
+     * @return the observable list
+     */
     public ObservableList<Part> getAllAssociatedParts(){
         return associatedParts;
     }

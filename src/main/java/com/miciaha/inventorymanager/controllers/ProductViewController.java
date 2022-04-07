@@ -2,8 +2,6 @@ package com.miciaha.inventorymanager.controllers;
 
 import com.miciaha.inventorymanager.interfaces.FormEditor;
 import com.miciaha.inventorymanager.inventoryitems.Inventory;
-import com.miciaha.inventorymanager.inventoryitems.commands.CommandType;
-import com.miciaha.inventorymanager.inventoryitems.commands.ModifyProductPart;
 import com.miciaha.inventorymanager.inventoryitems.entities.Product;
 import com.miciaha.inventorymanager.inventoryitems.entities.parts.Part;
 import com.miciaha.inventorymanager.utilities.FormManager;
@@ -25,68 +23,173 @@ import java.util.ResourceBundle;
 
 import static com.miciaha.inventorymanager.utilities.fields.FieldValidator.checkFieldLogic.checkStock;
 
+/**
+ * The ProductViewController manages the product application view.
+ * By using the JavaFX Initializable interface, the controller is able to set
+ * the necessary table links and button managers.
+ * <p>
+ * Using the FormEditor interface, the controller is recognized for having an initData method
+ * which loads the selected data into a form for users.
+ * <p>
+ * Form field types are created then validated through the FieldTracker class.
+ *
+ * @see com.miciaha.inventorymanager.utilities.fields.FormField
+ * @see com.miciaha.inventorymanager.utilities.fields.FieldTracker
+ * Tables are populated using the TableManager class.
+ * @see com.miciaha.inventorymanager.utilities.TableManager
+ */
 public class ProductViewController implements Initializable, FormEditor<Product> {
 
     private ObservableList<Part> prodParts = FXCollections.observableArrayList();
 
+    /**
+     * The Anchor pane.
+     */
     @FXML
     public AnchorPane anchorPane;
+    /**
+     * The Parts table.
+     */
     @FXML
     public TableView<Part> partsTable;
+    /**
+     * The Product part table.
+     */
     @FXML
     public TableView<Part> productPartTable;
+    /**
+     * The Prod part id col.
+     */
     @FXML
     public TableColumn<Product, Integer> prodPartIdCol;
+    /**
+     * The Prod part name col.
+     */
     @FXML
     public TableColumn<Product, String> prodPartNameCol;
+    /**
+     * The Prod part stock col.
+     */
     @FXML
     public TableColumn<Product, Integer> prodPartStockCol;
+    /**
+     * The Prod part price col.
+     */
     @FXML
     public TableColumn<Product, Double> prodPartPriceCol;
+    /**
+     * The Part id col.
+     */
     @FXML
     public TableColumn<Part, Integer> partIdCol;
+    /**
+     * The Part name col.
+     */
     @FXML
     public TableColumn<Part, String> partNameCol;
+    /**
+     * The Part stock col.
+     */
     @FXML
     public TableColumn<Part, Integer> partStockCol;
+    /**
+     * The Part price col.
+     */
     @FXML
     public TableColumn<Part, Double> partPriceCol;
+    /**
+     * The Prod id text.
+     */
     @FXML
     public TextField prodIdText;
+    /**
+     * The Prod name text.
+     */
     @FXML
     public TextField prodNameText;
+    /**
+     * The Prod inv text.
+     */
     @FXML
     public TextField prodInvText;
+    /**
+     * The Prod price text.
+     */
     @FXML
     public TextField prodPriceText;
+    /**
+     * The Prod max text.
+     */
     @FXML
     public TextField prodMaxText;
+    /**
+     * The Prod min text.
+     */
     @FXML
     public TextField prodMinText;
+    /**
+     * The Search all parts.
+     */
     @FXML
     public TextField searchAllParts;
+    /**
+     * The Search prod parts.
+     */
     @FXML
     public TextField searchProdParts;
+    /**
+     * The Part prod table label.
+     */
     @FXML
     public Label partProdTableLabel;
+    /**
+     * The Part table label.
+     */
     @FXML
     public Label partTableLabel;
+    /**
+     * The Name error label.
+     */
     @FXML
     public Label nameErrorLabel;
+    /**
+     * The Inv error label.
+     */
     @FXML
     public Label invErrorLabel;
+    /**
+     * The Price error label.
+     */
     @FXML
     public Label priceErrorLabel;
+    /**
+     * The Max error label.
+     */
     @FXML
     public Label maxErrorLabel;
+    /**
+     * The Min error label.
+     */
     @FXML
     public Label minErrorLabel;
+    /**
+     * The Add part btn.
+     */
     @FXML
     public Button addPartBtn;
+    /**
+     * The Remove part btn.
+     */
     @FXML
     public Button removePartBtn;
+    /**
+     * The Save product btn.
+     */
     @FXML
     public Button saveProductBtn;
+    /**
+     * The Cancel product btn.
+     */
     @FXML
     public Button cancelProductBtn;
 

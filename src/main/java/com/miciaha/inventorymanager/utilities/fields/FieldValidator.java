@@ -7,15 +7,42 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 
+/**
+ * The type Field validator validates field according to their field type.
+ */
 public class FieldValidator {
 
+    /**
+     * The type Text field validator.
+     */
     public static class TextFieldValidator implements FormFieldValidator {
+        /**
+         * The Field.
+         */
         protected TextField field;
+        /**
+         * The Error label.
+         */
         protected Label errorLabel;
+        /**
+         * The Text.
+         */
         protected String text;
+        /**
+         * The Error text.
+         */
         protected String errorText;
+        /**
+         * The Is valid.
+         */
         protected boolean isValid;
 
+        /**
+         * Instantiates a new Text field validator.
+         *
+         * @param field      the field
+         * @param errorLabel the error label
+         */
         public TextFieldValidator(TextField field, Label errorLabel) {
             this.field = field;
             this.errorLabel = errorLabel;
@@ -38,6 +65,9 @@ public class FieldValidator {
             }
         }
 
+        /**
+         * Update valid.
+         */
         protected void updateValid() {
             if (!isValid) {
                 isValid = true;
@@ -45,6 +75,9 @@ public class FieldValidator {
             }
         }
 
+        /**
+         * Update invalid.
+         */
         protected void updateInvalid() {
             if (isValid) {
                 isValid = false;
@@ -52,6 +85,9 @@ public class FieldValidator {
             }
         }
 
+        /**
+         * Sets error values.
+         */
         protected void setErrorValues() {
             if(!field.getStyleClass().contains("invalid-field")) {
                 field.getStyleClass().add("invalid-field");
@@ -62,6 +98,9 @@ public class FieldValidator {
             updateInvalid();
         }
 
+        /**
+         * Sets valid values.
+         */
         protected void setValidValues() {
             if(!field.getStyleClass().contains("valid-field")){
                 field.getStyleClass().add("valid-field");
@@ -72,7 +111,16 @@ public class FieldValidator {
         }
     }
 
+    /**
+     * The type Integer field validator.
+     */
     public static class IntegerFieldValidator extends TextFieldValidator implements FormFieldValidator {
+        /**
+         * Instantiates a new Integer field validator.
+         *
+         * @param field      the field
+         * @param errorLabel the error label
+         */
         public IntegerFieldValidator(TextField field, Label errorLabel) {
             super(field, errorLabel);
             this.errorText = "Please enter a valid integer";
@@ -111,7 +159,16 @@ public class FieldValidator {
         }
     }
 
+    /**
+     * The type Double field validator.
+     */
     public static class DoubleFieldValidator extends TextFieldValidator implements FormFieldValidator {
+        /**
+         * Instantiates a new Double field validator.
+         *
+         * @param field      the field
+         * @param errorLabel the error label
+         */
         public DoubleFieldValidator(TextField field, Label errorLabel) {
             super(field, errorLabel);
             this.errorText = "Please enter a valid number";
@@ -150,7 +207,18 @@ public class FieldValidator {
         }
     }
 
+    /**
+     * The type Check field logic.
+     */
     public static class checkFieldLogic {
+        /**
+         * Check stock boolean.
+         *
+         * @param min       the min
+         * @param max       the max
+         * @param inventory the inventory
+         * @return the boolean
+         */
         public static boolean checkStock(int min, int max, int inventory) {
             if (inventory > max || min > inventory) {
                 new Alerts.CustomAlert.WarningAlert(

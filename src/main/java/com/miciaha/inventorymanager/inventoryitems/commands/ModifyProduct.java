@@ -5,11 +5,29 @@ import com.miciaha.inventorymanager.inventoryitems.Inventory;
 import com.miciaha.inventorymanager.inventoryitems.entities.Product;
 import com.miciaha.inventorymanager.utilities.Alerts;
 
+/**
+ * The type Modify product.
+ */
 public class ModifyProduct {
+    /**
+     * The Product.
+     */
     protected Product product;
+    /**
+     * The Command.
+     */
     protected Command<Product> command;
+    /**
+     * The Command name.
+     */
     protected String commandName;
 
+    /**
+     * Instantiates a new Modify product.
+     *
+     * @param product the product
+     * @param command the command
+     */
     public ModifyProduct(Product product, CommandType command){
         this.product = product;
 
@@ -26,10 +44,19 @@ public class ModifyProduct {
         runCommand();
     }
 
+    /**
+     * Prod is null boolean.
+     *
+     * @param product the product
+     * @return the boolean
+     */
     protected boolean prodIsNull(Product product) {
         return product == null;
     }
 
+    /**
+     * Run command.
+     */
     public void runCommand() {
         if (prodIsNull(product)) {
             new Alerts.CustomAlert.CommandErrorAlert(commandName, "No product selected.");
@@ -38,13 +65,29 @@ public class ModifyProduct {
         }
     }
 
+    /**
+     * Delete command.
+     *
+     * @return the command
+     */
     public Command<Product> delete(){
         return new DeleteProduct(product);
     }
 
+    /**
+     * The type Delete product.
+     */
     public static class DeleteProduct implements Command<Product> {
+        /**
+         * The Selected product.
+         */
         Product selectedProduct;
 
+        /**
+         * Instantiates a new Delete product.
+         *
+         * @param product the product
+         */
         public DeleteProduct(Product product) {
             this.selectedProduct = product;
         }

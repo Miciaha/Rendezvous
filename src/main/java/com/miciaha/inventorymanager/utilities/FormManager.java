@@ -13,20 +13,54 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * The type Form manager handles the creation and removal of view forms.
+ * All logic required to open and close stages in addition to the primary stage is located in this class.
+ */
 public class FormManager {
 
+    /**
+     * The type Form.
+     */
     public static class Form {
+        /**
+         * The Call btn.
+         */
         protected Button callBtn;
+        /**
+         * The Win title.
+         */
         protected String winTitle;
+        /**
+         * The Stylesheet.
+         */
         protected String stylesheet;
+        /**
+         * The Form file.
+         */
         protected String formFile;
+        /**
+         * The Win size x.
+         */
         protected double winSizeX;
+        /**
+         * The Win size y.
+         */
         protected double winSizeY;
+        /**
+         * The Loaded form.
+         */
         protected FXMLLoader loadedForm;
 
+        /**
+         * Instantiates a new Form.
+         */
         public Form() {
         }
 
+        /**
+         * Open form.
+         */
         public void openForm() {
             Scene primaryStage = callBtn.getScene();
             this.loadedForm = new FXMLLoader(InventoryApplication.class.getResource(formFile));
@@ -46,8 +80,16 @@ public class FormManager {
         }
     }
 
+    /**
+     * The type Part form.
+     */
     public static class PartForm extends Form{
 
+        /**
+         * Instantiates a new Part form.
+         *
+         * @param callBtn the call btn
+         */
         public PartForm(Button callBtn){
             this.winSizeX = 300;
             this.winSizeY = 550;
@@ -58,8 +100,16 @@ public class FormManager {
         }
     }
 
+    /**
+     * The type Create part form.
+     */
     public static class CreatePartForm extends PartForm{
 
+        /**
+         * Instantiates a new Create part form.
+         *
+         * @param callBtn the call btn
+         */
         public CreatePartForm(Button callBtn) {
             super(callBtn);
             this.winTitle = "Create Part Form";
@@ -67,8 +117,17 @@ public class FormManager {
         }
     }
 
+    /**
+     * The type Edit part form.
+     */
     public static class EditPartForm extends PartForm{
 
+        /**
+         * Instantiates a new Edit part form.
+         *
+         * @param callBtn  the call btn
+         * @param editPart the edit part
+         */
         public EditPartForm(Button callBtn, Part editPart) {
             super(callBtn);
             this.winTitle = "Edit Part Form";
@@ -79,8 +138,16 @@ public class FormManager {
         }
     }
 
+    /**
+     * The type Product form.
+     */
     public static class ProductForm extends Form{
 
+        /**
+         * Instantiates a new Product form.
+         *
+         * @param callBtn the call btn
+         */
         public ProductForm(Button callBtn){
             this.winSizeX = 820;
             this.winSizeY = 650;
@@ -91,8 +158,16 @@ public class FormManager {
         }
     }
 
+    /**
+     * The type Create product form.
+     */
     public static class CreateProductForm extends ProductForm{
 
+        /**
+         * Instantiates a new Create product form.
+         *
+         * @param callBtn the call btn
+         */
         public CreateProductForm(Button callBtn) {
             super(callBtn);
             this.winTitle = "Create Product Form";
@@ -100,8 +175,17 @@ public class FormManager {
         }
     }
 
+    /**
+     * The type Edit product form.
+     */
     public static class EditProductForm extends ProductForm{
 
+        /**
+         * Instantiates a new Edit product form.
+         *
+         * @param callBtn     the call btn
+         * @param editProduct the edit product
+         */
         public EditProductForm(Button callBtn, Product editProduct){
             super(callBtn);
             this.winTitle = "Edit Product Form";
@@ -112,6 +196,11 @@ public class FormManager {
         }
     }
 
+    /**
+     * Close form.
+     *
+     * @param button the button
+     */
     public static void closeForm(Button button) {
         FieldTracker.Fields.clear();
         Stage btnStage = (Stage) button.getScene().getWindow();
