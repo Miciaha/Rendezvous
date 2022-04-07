@@ -51,9 +51,9 @@ Inventory management application created using JavaFX.
 |:heavy_check_mark:| Add button opens the Add Part form | |
 |:heavy_check_mark:| Modify button opens the Modify Part form | |
 |:heavy_check_mark:| Delete button deletes the selected part from the PartsTableView | |
-| | Delete button creates a descriptive error message if a part is not deleted | |
-| | Search field above the Parts TableView allows user to search by ID or name | |
-| | Search field creates a descriptive error message if a part is not found | |
+|:heavy_check_mark:| Delete button creates a descriptive error message if a part is not deleted | |
+|:heavy_check_mark:| Search field above the Parts TableView allows user to search by ID or name | |
+|:heavy_check_mark:| Search field creates a descriptive error message if a part is not found | |
 |:heavy_check_mark:| If search field is empty, display all parts | |
 
 #### Products Pane
@@ -62,10 +62,10 @@ Inventory management application created using JavaFX.
 |:heavy_check_mark:| Add button opens the Add Product form | |
 |:heavy_check_mark:| Modify button opens the Modify Product form | |
 |:heavy_check_mark:| Delete button deletes the selected product from the ProductsTableView | |
-| | Delete button creates a descriptive error message if a product is not deleted | |
-| | Search field above the Products TableView allows user to search by ID or name | |
-| | Search field creates a descriptive error message if a product is not found | |
-| :heavy_check_mark:| If search field is empty, display all products | |
+|:heavy_check_mark:| Delete button creates a descriptive error message if a product is not deleted | |
+|:heavy_check_mark:| Search field above the Products TableView allows user to search by ID or name | |
+|:heavy_check_mark:| Search field creates a descriptive error message if a product is not found | |
+|:heavy_check_mark:| If search field is empty, display all products | |
 
 #### Exit Button
 |    | Task  | Notes | 
@@ -103,9 +103,9 @@ Inventory management application created using JavaFX.
 |:heavy_check_mark:| Application auto-generates a unique product ID ||
 |:heavy_check_mark:| Product ID text field must be disabled ||
 |:heavy_check_mark:| User should be able to enter data into active text fields ||
-|| User can search for parts by ID or name in the top table ||
-|| Error message is displayed if the part or parts are not found ||
-|| If search field is empty, display all parts ||
+|:heavy_check_mark:| User can search for parts by ID or name in the top table ||
+|:heavy_check_mark:| Error message is displayed if the part or parts are not found ||
+|:heavy_check_mark:| If search field is empty, display all parts ||
 |:heavy_check_mark:| Top table is identical to Parts TableView in the Main form ||
 |:heavy_check_mark:| User can add parts to bottom table by selecting parts from top table and clicking add ||
 |:heavy_check_mark:| Remove Associated Part button removes selected part from bottom table ||
@@ -118,9 +118,9 @@ Inventory management application created using JavaFX.
 |    | Task  | Notes | 
 |----|-------|-------|
 |:heavy_check_mark:| Text fields and TableView populate with the data from the chosen product ||
-|| User can search for parts by ID or name in the top table ||
-|| Error message is displayed if the part or parts are not found ||
-|| If search field is empty, display all parts ||
+|:heavy_check_mark:| User can search for parts by ID or name in the top table ||
+|:heavy_check_mark:| Error message is displayed if the part or parts are not found ||
+|:heavy_check_mark:| If search field is empty, display all parts ||
 |:heavy_check_mark:| User should be able to enter data into active text fields ||
 |:heavy_check_mark:| Top table is identical to Parts TableView in the Main form ||
 |:heavy_check_mark:| User can add parts to bottom table by selecting parts from top table and clicking add ||
@@ -131,9 +131,9 @@ Inventory management application created using JavaFX.
 ### G. Implement input validation and logical error checks
 |    | Task  | Notes | 
 |----|-------|-------|
-|| Check Min <= Inventory <= Max ||
+|:heavy_check_mark:| Check Min <= Inventory <= Max ||
 || Part with Product association cannot be deleted ||
-|| Confirm Delete and Remove actions ||
-|| Return error messages instead of crashing app on bad entry data ||
+|:heavy_check_mark:| Confirm Delete and Remove actions ||
+|:heavy_check_mark:| Return error messages instead of crashing app on bad entry data ||
 
 ### H. Provide a folder containing Javadoc files generated. Mention location in main header declaration.
