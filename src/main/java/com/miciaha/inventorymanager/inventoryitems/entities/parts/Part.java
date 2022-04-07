@@ -1,4 +1,4 @@
-package com.miciaha.inventorymanager.inventoryitems.parts;
+package com.miciaha.inventorymanager.inventoryitems.entities.parts;
 
 /**
  *

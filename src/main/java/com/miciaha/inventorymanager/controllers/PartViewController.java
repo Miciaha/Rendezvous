@@ -2,10 +2,10 @@ package com.miciaha.inventorymanager.controllers;
 
 import com.miciaha.inventorymanager.interfaces.FormEditor;
 import com.miciaha.inventorymanager.inventoryitems.Inventory;
-import com.miciaha.inventorymanager.inventoryitems.parts.InHouse;
-import com.miciaha.inventorymanager.inventoryitems.parts.Outsourced;
-import com.miciaha.inventorymanager.inventoryitems.parts.Part;
-import com.miciaha.inventorymanager.inventoryitems.parts.PartType;
+import com.miciaha.inventorymanager.inventoryitems.entities.parts.InHouse;
+import com.miciaha.inventorymanager.inventoryitems.entities.parts.Outsourced;
+import com.miciaha.inventorymanager.inventoryitems.entities.parts.Part;
+import com.miciaha.inventorymanager.inventoryitems.entities.parts.PartType;
 import com.miciaha.inventorymanager.utilities.fields.FieldTracker;
 import com.miciaha.inventorymanager.utilities.fields.FieldType;
 import com.miciaha.inventorymanager.utilities.fields.FormField;
@@ -23,7 +23,7 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-import static com.miciaha.inventorymanager.utilities.fields.FieldValidator.LogicChecker.checkStock;
+import static com.miciaha.inventorymanager.utilities.fields.FieldValidator.checkFieldLogic.checkStock;
 
 public class PartViewController implements Initializable, FormEditor<Part> {
     @FXML

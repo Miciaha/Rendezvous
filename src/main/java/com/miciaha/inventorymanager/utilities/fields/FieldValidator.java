@@ -1,11 +1,11 @@
 package com.miciaha.inventorymanager.utilities.fields;
 
 import com.miciaha.inventorymanager.interfaces.FormFieldValidator;
+import com.miciaha.inventorymanager.utilities.Alerts;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-import static com.miciaha.inventorymanager.utilities.Alerts.CustomAlert.createWarningAlert;
 
 public class FieldValidator {
 
@@ -53,15 +53,20 @@ public class FieldValidator {
         }
 
         protected void setErrorValues() {
-            field.getStyleClass().add("invalid-field");
+            if(!field.getStyleClass().contains("invalid-field")) {
+                field.getStyleClass().add("invalid-field");
+            }
+            field.getStyleClass().remove("valid-field");
             errorLabel.textProperty().setValue(errorText);
             errorLabel.visibleProperty().setValue(true);
             updateInvalid();
         }
 
         protected void setValidValues() {
+            if(!field.getStyleClass().contains("valid-field")){
+                field.getStyleClass().add("valid-field");
+            }
             field.getStyleClass().remove("invalid-field");
-            field.getStyleClass().add("valid-field");
             errorLabel.visibleProperty().setValue(false);
             updateValid();
         }
@@ -145,10 +150,10 @@ public class FieldValidator {
         }
     }
 
-    public static class LogicChecker {
+    public static class checkFieldLogic {
         public static boolean checkStock(int min, int max, int inventory) {
             if (inventory > max || min > inventory) {
-                createWarningAlert("Stock mismanagement!",
+                new Alerts.CustomAlert.WarningAlert(
                         "Fix inventory values",
                         "Please ensure inventory is between the minimum and maximum values.");
                 return false;

@@ -2,8 +2,8 @@ package com.miciaha.inventorymanager.utilities;
 
 import com.miciaha.inventorymanager.interfaces.TableSearcher;
 import com.miciaha.inventorymanager.inventoryitems.Inventory;
-import com.miciaha.inventorymanager.inventoryitems.Product;
-import com.miciaha.inventorymanager.inventoryitems.parts.Part;
+import com.miciaha.inventorymanager.inventoryitems.entities.Product;
+import com.miciaha.inventorymanager.inventoryitems.entities.parts.Part;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,14 +14,26 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class TableManager {
 
-    public static class PartTable {
+    public static class BaseTableLink<T> {
+        BaseTableLink(TableColumn<T, Integer> idCol, TableColumn<T, String> nameCol,
+                      TableColumn<T, Integer> stockCol, TableColumn<T, Double> priceCol){
 
-        public static void linkFields(TableColumn<Part, Integer> partIdCol, TableColumn<Part, String> partNameCol,
-                                      TableColumn<Part, Integer> partStockCol, TableColumn<Part, Double> partPriceCol) {
-            partIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-            partNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-            partStockCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
-            partPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+            idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+            nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+            stockCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
+            priceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+        }
+    }
+
+    public static class PartTableLink extends BaseTableLink<Part> {
+        public PartTableLink(TableColumn<Part, Integer> idCol, TableColumn<Part, String> nameCol, TableColumn<Part, Integer> stockCol, TableColumn<Part, Double> priceCol) {
+            super(idCol, nameCol, stockCol, priceCol);
+        }
+    }
+
+    public static class ProductTableLink extends BaseTableLink<Product> {
+        public ProductTableLink(TableColumn<Product, Integer> idCol, TableColumn<Product, String> nameCol, TableColumn<Product, Integer> stockCol, TableColumn<Product, Double> priceCol) {
+            super(idCol, nameCol, stockCol, priceCol);
         }
     }
 
@@ -105,8 +117,47 @@ public class TableManager {
         }
     }
 
+    public static class SearchProductTableField extends SearchTableField<Product> implements TableSearcher<Product>{
+        protected ObservableList<Product> foundList = FXCollections.observableArrayList();
+
+        public SearchProductTableField(Label errorLabel, TableView<Product> table) {
+            super(errorLabel, table);
+            this.errorTextItem = "products";
+            this.table = table;
+        }
+
+        @Override
+        public boolean setTableItems(){
+            ObservableList<Product> rawFoundList = FXCollections.observableArrayList();
+
+            int searchId;
+            foundList.clear();
+            rawFoundList.addAll(Inventory.lookupProduct(searchText));
+
+            try{
+                searchId = Integer.parseInt(searchText);
+                Product product = Inventory.lookupProduct(searchId);
+                if(product!=null){
+                    rawFoundList.add(product);
+                }
+            } catch (Exception e){
+                System.out.print(e.getMessage());
+            }
+
+            rawFoundList.stream().distinct().forEach(product -> foundList.add(product));
+
+            table.setItems(foundList);
+            return !foundList.isEmpty();
+        }
+
+        @Override
+        public void setDefaultView(){
+            table.setItems(Inventory.getAllProducts());
+        }
+    }
+
     public static class SearchProductPartTableField extends SearchPartTableField {
-        private ObservableList<Part> partsList = FXCollections.observableArrayList();
+        private final ObservableList<Part> partsList;
         public SearchProductPartTableField(Label errorLabel, TableView<Part> table, ObservableList<Part> watchList) {
             super(errorLabel, table);
             this.partsList = watchList;
@@ -148,56 +199,6 @@ public class TableManager {
         @Override
         public void setDefaultView(){
             table.setItems(partsList);
-        }
-    }
-
-    public static class SearchProductTableField extends SearchTableField<Product> implements TableSearcher<Product>{
-        protected ObservableList<Product> foundList = FXCollections.observableArrayList();
-
-        public SearchProductTableField(Label errorLabel, TableView<Product> table) {
-            super(errorLabel, table);
-            this.errorTextItem = "products";
-            this.table = table;
-        }
-
-        @Override
-        public boolean setTableItems(){
-            ObservableList<Product> rawFoundList = FXCollections.observableArrayList();
-
-            int searchId;
-            foundList.clear();
-            rawFoundList.addAll(Inventory.lookupProduct(searchText));
-
-            try{
-                searchId = Integer.parseInt(searchText);
-                Product product = Inventory.lookupProduct(searchId);
-                if(product!=null){
-                    rawFoundList.add(product);
-                }
-            } catch (Exception e){
-                System.out.print(e.getMessage());
-            }
-
-            rawFoundList.stream().distinct().forEach(product -> foundList.add(product));
-
-            table.setItems(foundList);
-            return !foundList.isEmpty();
-        }
-
-        @Override
-        public void setDefaultView(){
-            table.setItems(Inventory.getAllProducts());
-        }
-    }
-
-    public static class ProductTable {
-
-        public static void linkFields(TableColumn<Product, Integer> prodIdCol, TableColumn<Product, String> prodNameCol,
-                                      TableColumn<Product, Integer> prodStockCol, TableColumn<Product, Double> prodPriceCol) {
-            prodIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-            prodNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-            prodStockCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
-            prodPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
         }
     }
 }

@@ -2,23 +2,16 @@ package com.miciaha.inventorymanager.utilities;
 
 import com.miciaha.inventorymanager.InventoryApplication;
 import com.miciaha.inventorymanager.interfaces.FormEditor;
-import com.miciaha.inventorymanager.interfaces.InventoryItem;
-import com.miciaha.inventorymanager.inventoryitems.Inventory;
-import com.miciaha.inventorymanager.inventoryitems.Product;
-import com.miciaha.inventorymanager.inventoryitems.parts.Part;
+import com.miciaha.inventorymanager.inventoryitems.entities.Product;
+import com.miciaha.inventorymanager.inventoryitems.entities.parts.Part;
 import com.miciaha.inventorymanager.utilities.fields.FieldTracker;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
-import static com.miciaha.inventorymanager.utilities.Alerts.CustomAlert.createSuccessAlert;
 
 public class FormManager {
 
@@ -26,21 +19,17 @@ public class FormManager {
         protected Button callBtn;
         protected String winTitle;
         protected String stylesheet;
+        protected String formFile;
         protected double winSizeX;
         protected double winSizeY;
         protected FXMLLoader loadedForm;
 
-        public Form(Button callBtn, String viewFile, String winTitle, String stylesheet, double winSizeX, double winSizeY) {
-            this.callBtn = callBtn;
-            this.winTitle = winTitle;
-            this.stylesheet = stylesheet;
-            this.winSizeX = winSizeX;
-            this.winSizeY = winSizeY;
-            this.loadedForm = new FXMLLoader(InventoryApplication.class.getResource(viewFile));
+        public Form() {
         }
 
         public void openForm() {
             Scene primaryStage = callBtn.getScene();
+            this.loadedForm = new FXMLLoader(InventoryApplication.class.getResource(formFile));
             try {
                 Scene scene = new Scene(loadedForm.load(), winSizeX, winSizeY);
                 scene.getStylesheets().add(String.valueOf(InventoryApplication.class.getResource(stylesheet)));
@@ -57,19 +46,69 @@ public class FormManager {
         }
     }
 
-    public static class EditForm<T> extends Form {
-        private final T formData;
+    public static class PartForm extends Form{
 
-        public EditForm(Button callBtn, String viewFile, String winTitle, String stylesheet, double winSizeX, double winSizeY, T formData) {
-            super(callBtn, viewFile, winTitle, stylesheet, winSizeX, winSizeY);
-            this.loadedForm = new FXMLLoader(InventoryApplication.class.getResource(viewFile));
-            this.formData = formData;
+        public PartForm(Button callBtn){
+            this.winSizeX = 300;
+            this.winSizeY = 550;
+            this.winTitle = "Part Form";
+            this.stylesheet = "main.css";
+            this.formFile = "part-view.fxml";
+            this.callBtn = callBtn;
         }
+    }
 
-        public void openEditForm() {
+    public static class CreatePartForm extends PartForm{
+
+        public CreatePartForm(Button callBtn) {
+            super(callBtn);
+            this.winTitle = "Create Part Form";
             openForm();
-            FormEditor<T> controller = loadedForm.getController();
-            controller.initData(formData);
+        }
+    }
+
+    public static class EditPartForm extends PartForm{
+
+        public EditPartForm(Button callBtn, Part editPart) {
+            super(callBtn);
+            this.winTitle = "Edit Part Form";
+
+            openForm();
+            FormEditor<Part> controller = loadedForm.getController();
+            controller.initData(editPart);
+        }
+    }
+
+    public static class ProductForm extends Form{
+
+        public ProductForm(Button callBtn){
+            this.winSizeX = 820;
+            this.winSizeY = 650;
+            this.winTitle = "Product Form";
+            this.stylesheet = "main.css";
+            this.formFile = "product-view.fxml";
+            this.callBtn = callBtn;
+        }
+    }
+
+    public static class CreateProductForm extends ProductForm{
+
+        public CreateProductForm(Button callBtn) {
+            super(callBtn);
+            this.winTitle = "Create Product Form";
+            openForm();
+        }
+    }
+
+    public static class EditProductForm extends ProductForm{
+
+        public EditProductForm(Button callBtn, Product editProduct){
+            super(callBtn);
+            this.winTitle = "Edit Product Form";
+
+            openForm();
+            FormEditor<Product> controller = loadedForm.getController();
+            controller.initData(editProduct);
         }
     }
 
@@ -79,54 +118,4 @@ public class FormManager {
         btnStage.close();
     }
 
-
-    public static void deleteInventoryItem(InventoryItem item) {
-        if (item == null) {
-             Alerts.CustomAlert.createErrorAlert("delete");
-        } else {
-            String itemName = item.getClass().getSuperclass().getSimpleName();
-            if(itemName.equals("Object")){
-                itemName = item.getClass().getSimpleName();
-            }
-
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Delete Confirmation");
-            alert.setHeaderText("Deleted " + itemName + "s cannot be restored.");
-            alert.setContentText("Are you sure you wish to delete this " + itemName + "?");
-            alert.showAndWait().ifPresent(response -> {
-                if (response == ButtonType.OK) {
-                    deleteItem(item);
-                }
-            });
-        }
-    }
-
-    public static void removeProductPart(Part part, ObservableList<Part> partList) {
-        if (part == null) {
-            Alerts.CustomAlert.createErrorAlert("delete");
-        } else {
-
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Removal Confirmation");
-            alert.setHeaderText("Remove part from product?");
-            alert.setContentText("Are you sure you wish to remove this part from the product?");
-            alert.showAndWait().ifPresent(response -> {
-                if (response == ButtonType.OK) {
-                    partList.remove(part);
-                }
-            });
-        }
-    }
-
-    private static void deleteItem(InventoryItem item) {
-        if (item instanceof Product) {
-            if (Inventory.deleteProduct((Product) item)) {
-                createSuccessAlert();
-            }
-        } else {
-            if (Inventory.deletePart((Part) item)) {
-                createSuccessAlert();
-            }
-        }
-    }
 }

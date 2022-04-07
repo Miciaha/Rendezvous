@@ -1,10 +1,9 @@
-package com.miciaha.inventorymanager.inventoryitems;
-import com.miciaha.inventorymanager.interfaces.InventoryItem;
-import com.miciaha.inventorymanager.inventoryitems.parts.Part;
+package com.miciaha.inventorymanager.inventoryitems.entities;
+import com.miciaha.inventorymanager.inventoryitems.entities.parts.Part;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class Product implements InventoryItem {
+public class Product  {
     private final ObservableList<Part> associatedParts =  FXCollections.observableArrayList();
     private int id;
     private String name;

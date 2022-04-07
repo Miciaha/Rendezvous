@@ -1,8 +1,6 @@
-package com.miciaha.inventorymanager.inventoryitems.parts;
+package com.miciaha.inventorymanager.inventoryitems.entities.parts;
 
-import com.miciaha.inventorymanager.interfaces.InventoryItem;
-
-public class Outsourced extends Part implements PartType, InventoryItem {
+public class Outsourced extends Part implements PartType {
     private String companyName;
 
     public Outsourced(int id, String name, double price, int stock, int min, int max, String CompanyName) {

@@ -1,5 +1,6 @@
 package com.miciaha.inventorymanager.inventoryitems;
-import com.miciaha.inventorymanager.inventoryitems.parts.Part;
+import com.miciaha.inventorymanager.inventoryitems.entities.Product;
+import com.miciaha.inventorymanager.inventoryitems.entities.parts.Part;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

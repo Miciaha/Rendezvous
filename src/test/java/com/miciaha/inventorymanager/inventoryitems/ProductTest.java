@@ -1,5 +1,6 @@
 package com.miciaha.inventorymanager.inventoryitems;
 
+import com.miciaha.inventorymanager.inventoryitems.entities.Product;
 import org.junit.jupiter.api.Test;
 
 class ProductTest {

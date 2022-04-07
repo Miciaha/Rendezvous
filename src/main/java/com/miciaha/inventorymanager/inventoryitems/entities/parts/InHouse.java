@@ -1,8 +1,6 @@
-package com.miciaha.inventorymanager.inventoryitems.parts;
+package com.miciaha.inventorymanager.inventoryitems.entities.parts;
 
-import com.miciaha.inventorymanager.interfaces.InventoryItem;
-
-public class InHouse extends Part implements PartType, InventoryItem {
+public class InHouse extends Part implements PartType {
     private int machineId;
 
     public InHouse(int id, String name, double price, int stock, int min, int max, int machineId) {
@@ -10,15 +8,15 @@ public class InHouse extends Part implements PartType, InventoryItem {
         this.machineId = machineId;
     }
 
-    public void setMachineId(int id){
+    public void setMachineId(int id) {
         machineId = id;
     }
 
-    public int getMachineId(){
+    public int getMachineId() {
         return machineId;
     }
 
-    public String getTypeDetail(){
+    public String getTypeDetail() {
         return String.valueOf(machineId);
     }
 }

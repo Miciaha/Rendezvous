@@ -2,8 +2,10 @@ package com.miciaha.inventorymanager.controllers;
 
 import com.miciaha.inventorymanager.interfaces.FormEditor;
 import com.miciaha.inventorymanager.inventoryitems.Inventory;
-import com.miciaha.inventorymanager.inventoryitems.Product;
-import com.miciaha.inventorymanager.inventoryitems.parts.Part;
+import com.miciaha.inventorymanager.inventoryitems.commands.CommandType;
+import com.miciaha.inventorymanager.inventoryitems.commands.ModifyProductPart;
+import com.miciaha.inventorymanager.inventoryitems.entities.Product;
+import com.miciaha.inventorymanager.inventoryitems.entities.parts.Part;
 import com.miciaha.inventorymanager.utilities.FormManager;
 import com.miciaha.inventorymanager.utilities.TableManager;
 import com.miciaha.inventorymanager.utilities.fields.FieldTracker;
@@ -21,8 +23,7 @@ import javafx.scene.layout.AnchorPane;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static com.miciaha.inventorymanager.utilities.FormManager.removeProductPart;
-import static com.miciaha.inventorymanager.utilities.fields.FieldValidator.LogicChecker.checkStock;
+import static com.miciaha.inventorymanager.utilities.fields.FieldValidator.checkFieldLogic.checkStock;
 
 public class ProductViewController implements Initializable, FormEditor<Product> {
 
@@ -94,8 +95,8 @@ public class ProductViewController implements Initializable, FormEditor<Product>
         partsTable.setItems(Inventory.getAllParts());
         productPartTable.setItems(prodParts);
 
-        TableManager.PartTable.linkFields(partIdCol, partNameCol, partStockCol, partPriceCol);
-        TableManager.ProductTable.linkFields(prodPartIdCol, prodPartNameCol, prodPartStockCol, prodPartPriceCol);
+        new TableManager.PartTableLink(partIdCol, partNameCol, partStockCol, partPriceCol);
+        new TableManager.ProductTableLink(prodPartIdCol, prodPartNameCol, prodPartStockCol, prodPartPriceCol);
 
         searchAllParts.textProperty().addListener(new TableManager.SearchPartTableField(partTableLabel, partsTable));
         searchProdParts.textProperty().addListener(new TableManager.SearchProductPartTableField(partProdTableLabel, productPartTable, prodParts));
@@ -139,7 +140,7 @@ public class ProductViewController implements Initializable, FormEditor<Product>
         @Override
         public void handle(ActionEvent event) {
             Part selectedPart = productPartTable.getFocusModel().getFocusedItem();
-            removeProductPart(selectedPart, prodParts);
+            prodParts.remove(selectedPart);
         }
     }
 
