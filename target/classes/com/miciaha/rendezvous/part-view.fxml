@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="550.0" prefWidth="300.0" stylesheets="@assets/main.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.miciaha.inventorymanager.controllers.PartViewController">
+<AnchorPane fx:id="anchorPane" prefHeight="550.0" prefWidth="300.0" stylesheets="@assets/main.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.miciaha.rendezvous.controllers.PartViewController">
    <children>
       <Rectangle fill="DODGERBLUE" height="44.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="307.0" />
       <Label fx:id="partViewTitle" layoutX="107.0" layoutY="7.0" text="Part Form" textFill="WHITE">
