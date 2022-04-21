@@ -15,13 +15,13 @@ import java.util.ResourceBundle;
 
 
 /**
- * The InventoryViewController manages the main application view.
+ * The LoginViewController manages the login view.
  * By using the JavaFX Initializable interface, the controller is able to set
  * the necessary table links and button managers.
  *
  * @author Miciaha Ivey
  */
-public class MainViewController implements Initializable {
+public class LoginViewController implements Initializable {
 
     @FXML
     public Button btnLogin;
@@ -50,6 +50,9 @@ public class MainViewController implements Initializable {
     @FXML
     public Label usernameErrorLabel;
 
+    @FXML
+    public Label errorLoginLabel;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -64,10 +67,9 @@ public class MainViewController implements Initializable {
         @Override
         public void handle(ActionEvent event){
 
+            errorLoginLabel.visibleProperty().setValue(true);
+            errorLoginLabel.textProperty().setValue("Incorrect username or password. Please try again.");
 
-
-//            new Alerts.CustomAlert.WarningAlert("Field Values",
-//                        "Username: " + usernameField.getText() + "\nPassword: " + passwordField.getText());
 
         }
     }

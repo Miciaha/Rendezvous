@@ -20,8 +20,6 @@ public class SchedulingApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(SchedulingApplication.class.getResource("main-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1020, 725);
 
-        scene.getStylesheets().add(String.valueOf(SchedulingApplication.class.getResource("main.css")));
-        Font.loadFont(String.valueOf(SchedulingApplication.class.getResourceAsStream("Roboto-Medium.ttf")),14);
         stage.setTitle("Rendezvous");
         stage.setScene(scene);
         stage.show();

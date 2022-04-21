@@ -4,13 +4,13 @@ import java.sql.*;
 
 public class UserDbManager {
 
-    Connection conn = null;
+    static Connection conn = null;
 
     public UserDbManager(String url) throws SQLException {
         conn = DriverManager.getConnection(url);
     }
 
-    public boolean checkUserPassword(String name, String password) throws SQLException{
+    public static boolean checkUserPassword(String name, String password) throws SQLException{
         PreparedStatement stmt =  conn.prepareStatement("SELECT Password FROM \"User\" WHERE User_Name like %?%",
                                     Statement.RETURN_GENERATED_KEYS);
 

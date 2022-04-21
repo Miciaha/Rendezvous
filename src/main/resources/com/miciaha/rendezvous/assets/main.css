@@ -97,7 +97,7 @@ Button {
 
 .error-label{
     -fx-text-fill: #E55934;
-    -fx-font-size: 10px;
+    -fx-font-size: 14px;
     visibility: false;
 }
 
