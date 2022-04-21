@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="650.0" prefWidth="820.0" stylesheets="@assets/main.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.miciaha.inventorymanager.controllers.ProductViewController">
+<AnchorPane fx:id="anchorPane" prefHeight="650.0" prefWidth="820.0" stylesheets="@assets/main.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.miciaha.rendezvous.controllers.ProductViewController">
    <children>
       <Group layoutX="356.0" layoutY="120.0">
          <children>
