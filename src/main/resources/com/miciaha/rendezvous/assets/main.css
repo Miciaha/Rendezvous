@@ -74,7 +74,6 @@ Button {
     -fx-background-color: #9bc53d;
     -fx-border-width: 1;
     -fx-border-radius: 4;
-    -fx-pref-width: 70;
 }
 
 .table-row-cell:empty{

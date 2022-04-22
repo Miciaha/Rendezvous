@@ -2,6 +2,7 @@ package com.miciaha.rendezvous.utilities.fields;
 
 import com.miciaha.rendezvous.interfaces.FormFieldValidator;
 import com.miciaha.rendezvous.utilities.Alerts;
+import com.miciaha.rendezvous.utilities.location.LocaleHandler;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -93,7 +94,7 @@ public class FieldValidator {
                 field.getStyleClass().add("invalid-field");
             }
             field.getStyleClass().remove("valid-field");
-            errorLabel.textProperty().setValue(errorText);
+            LocaleHandler.setText(errorLabel.textProperty(),"error_text");
             errorLabel.visibleProperty().setValue(true);
             updateInvalid();
         }
