@@ -1,115 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="1020.0" stylesheets="@assets/main.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.miciaha.rendezvous.controllers.LoginViewController">
-   <children>
-      <VBox prefHeight="200.0" prefWidth="100.0">
+<VBox prefHeight="902.0" prefWidth="1168.0" stylesheets="@assets/main.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.miciaha.rendezvous.controllers.MainViewController">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="612.0" prefWidth="1070.0" VBox.vgrow="ALWAYS">
          <children>
-            <AnchorPane fx:id="anchorPane" prefHeight="725.0" prefWidth="369.0">
+            <Group fx:id="upcomingAptGroup" layoutX="319.0" layoutY="41.0" visible="false">
                <children>
-                  <Rectangle height="725.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="371.0">
-                     <fill>
-                        <LinearGradient endX="1.0" endY="1.0">
-                           <stops>
-                              <Stop>
-                                 <color>
-                                    <Color red="0.007843137718737125" green="0.24313725531101227" blue="0.5411764979362488" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="1.0">
-                                 <color>
-                                    <Color green="0.7058823704719543" blue="0.8470588326454163" />
-                                 </color>
-                              </Stop>
-                           </stops>
-                        </LinearGradient>
-                     </fill>
-                  </Rectangle>
-                  <Text fx:id="titleText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Rendezvous" x="13.0" y="35.0">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Text>
-                  <Text fx:id="welcomeText" fill="WHITE" layoutX="-5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Back!" textAlignment="CENTER" x="70.0" y="214.0">
-                     <font>
-                        <Font name="System Bold" size="32.0" />
-                     </font>
-                  </Text>
-                  <Text fx:id="blurbText" fill="WHITE" layoutX="-10.0" layoutY="-41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login to view and manage your upcoming appointments" wrappingWidth="246.2474365234375" x="76.0" y="288.0">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Text>
+                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="39.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="530.0" />
+                  <Label fx:id="upcomingAptLabel" layoutX="153.0" layoutY="11.0" text="[Date]: Appointment [ID] starting at [Time]" textFill="WHITE" />
                </children>
-            </AnchorPane>
-         </children>
-      </VBox>
-      <VBox prefHeight="725.0" prefWidth="653.0">
-         <children>
-            <AnchorPane prefHeight="735.0" prefWidth="649.0">
+            </Group>
+            <Group fx:id="noAptGroup" layoutX="319.0" layoutY="41.0">
                <children>
-                  <Rectangle fill="WHITE" height="725.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="649.0" />
-                  <Text fx:id="usernameText" fill="DIMGRAY" layoutX="-92.0" layoutY="-36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" x="250.0" y="240.0">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Text>
-                  <TextField fx:id="usernameField" layoutX="157.0" layoutY="221.0" prefHeight="45.0" prefWidth="295.0">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </TextField>
-                  <Label fx:id="usernameErrorLabel" layoutX="158.0" layoutY="269.0" styleClass="error-label" text="Label">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Text fx:id="passwordText" fill="DIMGRAY" layoutX="-94.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" x="250.0" y="300.0">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Text>
-                  <PasswordField fx:id="passwordField" layoutX="155.0" layoutY="348.0" prefHeight="45.0" prefWidth="295.0">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </PasswordField>
-                  <Label fx:id="passwordErrorLabel" layoutX="156.0" layoutY="395.0" styleClass="error-label" text="Label">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="btnLogin" layoutX="230.0" layoutY="445.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="149.0" styleClass="btnSave" text="Login">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
-                  <Label fx:id="errorLoginLabel" alignment="CENTER" layoutX="77.0" layoutY="490.0" prefHeight="20.0" prefWidth="455.0" styleClass="error-label">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="localeLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="414.0" layoutY="680.0" prefHeight="25.0" prefWidth="209.0" text="Location">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
+                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#bfbfbf" height="39.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="530.0" />
+                  <Label layoutX="190.0" layoutY="11.0" text="No upcoming appointments" textFill="WHITE" />
                </children>
-            </AnchorPane>
+            </Group>
+            <Group layoutX="85.0" layoutY="497.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="348.0" layoutX="-30.0" layoutY="-21.0" stroke="DODGERBLUE" strokeType="INSIDE" width="1053.0" />
+                  <TableView fx:id="aptTable" layoutY="66.0" prefHeight="200.0" prefWidth="993.0">
+                    <columns>
+                      <TableColumn fx:id="appIdCol" prefWidth="75.0" text="ID" />
+                      <TableColumn fx:id="appTitleCol" prefWidth="75.0" text="Title" />
+                        <TableColumn fx:id="appDescriptionCol" prefWidth="134.0" text="Description" />
+                        <TableColumn fx:id="appLocCol" prefWidth="118.0" text="Location" />
+                        <TableColumn fx:id="appConCol" prefWidth="114.0" text="Contact" />
+                        <TableColumn fx:id="appTypeCol" minWidth="7.0" prefWidth="73.0" text="Type" />
+                        <TableColumn fx:id="appStartCol" minWidth="0.0" prefWidth="102.0" text="Start" />
+                        <TableColumn fx:id="appEndCol" prefWidth="137.0" text="End" />
+                        <TableColumn fx:id="appCostIdCol" prefWidth="90.0" text="Customer ID" />
+                        <TableColumn fx:id="appUserIdCol" prefWidth="73.0" text="User ID" />
+                    </columns>
+                  </TableView>
+                  <Label layoutX="427.0" layoutY="10.0" text="All Appointments" textFill="#979797">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Group layoutX="836.0" layoutY="-8.0">
+                     <children>
+                        <Group layoutY="-4.0">
+                           <children>
+                              <Rectangle fill="DODGERBLUE" height="26.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="151.0" />
+                              <Rectangle fill="#f5f5f5" height="36.0" layoutY="26.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="151.0" />
+                              <Text fill="WHITE" layoutX="16.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="View appointments by" />
+                           </children>
+                        </Group>
+                        <RadioButton layoutX="90.0" layoutY="32.0" mnemonicParsing="false" text="Week" />
+                        <RadioButton layoutX="10.0" layoutY="32.0" mnemonicParsing="false" text="Month" />
+                     </children>
+                  </Group>
+                  <Button fx:id="addAppBtn" layoutY="280.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" styleClass="btnCreate" text="Add" />
+                  <Button fx:id="editAppBtn" layoutX="88.0" layoutY="280.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" styleClass="btnModify" text="Edit" />
+                  <Button fx:id="cancelAptBtn" layoutX="890.0" layoutY="280.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" styleClass="btnDelete" text="Cancel" />
+               </children>
+            </Group>
+            <Group layoutX="86.0" layoutY="63.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="312.0" layoutX="96.0" layoutY="46.0" stroke="DODGERBLUE" strokeType="INSIDE" width="804.0" />
+                  <TableView fx:id="customerTable" layoutX="131.0" layoutY="102.0" prefHeight="200.0" prefWidth="735.0">
+                    <columns>
+                      <TableColumn fx:id="costIdCol" prefWidth="75.0" text="ID" />
+                      <TableColumn fx:id="custNameCol" prefWidth="199.0" text="Name" />
+                        <TableColumn fx:id="custAddressCol" prefWidth="167.0" text="Address" />
+                        <TableColumn fx:id="custPostCol" prefWidth="119.0" text="Post Code" />
+                        <TableColumn fx:id="custPhoneCol" prefWidth="174.0" text="Phone" />
+                    </columns>
+                  </TableView>
+                  <Label layoutX="454.0" layoutY="62.0" text="Customers" textFill="#979797">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="addCustomerBtn" layoutX="129.0" layoutY="320.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="62.0" styleClass="btnCreate" text="Add" />
+                  <Button fx:id="editCustomerBtn" layoutX="215.0" layoutY="320.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="58.0" styleClass="btnModify" text="Edit" />
+                  <Button fx:id="deleteCustomerBtn" layoutX="786.0" layoutY="320.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" styleClass="btnDelete" text="Remove" />
+               </children>
+            </Group>
+            <MenuButton layoutX="55.0" layoutY="48.0" mnemonicParsing="false" text="Reports">
+              <items>
+                <MenuItem fx:id="btnTotalReport" mnemonicParsing="false" text="Total Appointments" />
+                <MenuItem fx:id="btnContactReport" mnemonicParsing="false" text="Contact Schedule" />
+                  <MenuItem fx:id="btnLoginReport" mnemonicParsing="false" text="Login Attempts" />
+              </items>
+            </MenuButton>
          </children>
-      </VBox>
-   </children>
-</HBox>
+    </AnchorPane>
+  </children>
+</VBox>

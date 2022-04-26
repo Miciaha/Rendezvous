@@ -1,5 +1,10 @@
 package com.miciaha.rendezvous.controllers;
 
+import com.miciaha.rendezvous.entities.CountryDivision;
+import com.miciaha.rendezvous.entities.CurrentUser;
+import com.miciaha.rendezvous.entities.Customer;
+import com.miciaha.rendezvous.interfaces.DbManager;
+import com.miciaha.rendezvous.persistence.CustomerDbManager;
 import com.miciaha.rendezvous.persistence.UserDbManager;
 import com.miciaha.rendezvous.utilities.Alerts;
 import com.miciaha.rendezvous.utilities.fields.FieldTracker;
@@ -67,6 +72,7 @@ public class LoginViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        CountryDivision.initializeLocations();
         try {
             setLocale();
         } catch (IOException e) {
@@ -101,14 +107,18 @@ public class LoginViewController implements Initializable {
             boolean matchConfirmed;
 
             try {
-                matchConfirmed = UserDbManager.Validator.userPwMatch(user,password);
+                matchConfirmed = UserDbManager.Validator.login(user,password);
             } catch (SQLException e) {
                 matchConfirmed = false;
                 e.printStackTrace();
             }
 
             if(matchConfirmed){
-                new Alerts.CustomAlert.SuccessAlert("Login");
+                Customer customer = new Customer("Test", "Address", "22222", "423-232-2222", "Florida");
+                DbManager<Customer> dbCustomer = new CustomerDbManager();
+                
+                dbCustomer.Create(customer);
+
             } else{
                 errorLoginLabel.visibleProperty().setValue(true);
             }
