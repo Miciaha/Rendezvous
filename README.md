@@ -1,139 +1,66 @@
-# InventoryManagementApp
-Inventory management application created using JavaFX.
-- [x] Create Project README
-- [x] Add Project Requirements to README
-- [ ] Include screenshots in README
+# Rendezvous
 
-## Part 1. User Interface
+## A. Create a GUI-based application using no external libraries (excluding JavaFX and MySQL JDBC)
 
-### A. Create a JavaFX application based on the Software 1 GUI mock-up.
+### 1. Create a log-in form
+| Status              | Task                                                                                                   |
+|---------------------|--------------------------------------------------------------------------------------------------------|
+| :heavy_check_mark:  | Accepts a user ID and password and provides an appropriate error message                               |
+| :heavy_check_mark:  | Determines the user’s location and displays it in a label on the log-in form                           |
+| :heavy_check_mark:  | Displays the log-in form in English or French based on the user’s computer language setting            |
+| :heavy_check_mark:  | Translates error control messages into English or French based on the user’s computer language setting |
 
-|    | Task  | Notes |
-|----|-------|-------|
-|:heavy_check_mark:| Create main form | |
-|:heavy_check_mark:| Create add part form | |
-|:heavy_check_mark:| Create modify part form | |
-|:heavy_check_mark:| Create add product form | |
-|:heavy_check_mark:| Create modify product form | |
+### 2. Customers
+| Status | Task                                                                           |
+|--------|--------------------------------------------------------------------------------|
+|        | Customer records can be added, updated, and deleted                            |
+|        | Collect customer name, address, postal code, and phone number                  |
+|        | Country and first-level division data is pre-populated in separate combo boxes |
+|        | All of the original customer information is displayed on the update form       |
+|        | All of the fields can be updated except for Customer_ID                        |
+|        | Customer data is displayed using a TableView                                   |
+|        | Message is displayed in the user interface when a customer is deleted          |
 
-### B. Provide Javadoc comments for each class member throughout the code. Include errors encountered and ehancements to be added
+### 3. Appointments
+| Status | Task                                                                       |
+|--------|----------------------------------------------------------------------------|
+|        | Appointments can be added, updated, and deleted                            |
+|        | Contact name is assigned to an appointment using a drop-down menu          |
+|        | Custom message is displayed in the user interface when canceled (deleted)  |
+|        | Appointment_ID is auto-generated and disabled throughout the application   |
+|        | Appointment information is displayed on the update form in local time zone |
+|        | Allow user to view appointment schedules by month and week                 |
+|        | Allow user to adjust appointment times                                     |
 
-## Part 2. Application
+### 4. Logical Error Checks
+| Status              | Logical Errors                                                                                                 |
+|---------------------|----------------------------------------------------------------------------------------------------------------|
+|                     | Scheduling an appointment outside of business hours defined as 8:00 a.m. to 10:00 p.m. EST, including weekends |
+|                     | Scheduling overlapping appointments for customers                                                              |
+| :heavy_check_mark:  | Entering an incorrect username and password                                                                    |
 
-### C. Create classes with data and logic that map to the UML class diagram provided and include the supplied Part class.
+### 5. Reports
+| Status | Description                                                                                                                                                       |
+|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|        | Total number of customer appointments by type and month                                                                                                           |
+|        | Schedule for each contact in your organization that includes appointment ID, title, type and description, start date and time, end date and time, and customer ID |
+|        | Security report: application entry attempts                                                                                                                       |
 
-#### UML Classes
-|    | Task  | Notes |
-|----|-------|-------|
-|:heavy_check_mark:| Include Part.java | |
-|:heavy_check_mark:| Create Inventory class based on UML | |
-|:heavy_check_mark:| Create Part class based on UML | |
-|:heavy_check_mark:| Create Product class based on UML | |
-|:heavy_check_mark:| Create InHouse class based on UML | |
-|:heavy_check_mark:| Create Outsourced class based on UML | |
+### 6. Final Tasks
+| Status | Description                                                                                                                        |
+|--------|------------------------------------------------------------------------------------------------------------------------------------|
+|        | Write at least two different lambda expressions                                                                                    |
+|        | Record all user log-in attempts, dates, and time stamps and whether each attempt was successful in a file named login_activity.txt |
+|        | Provide Javadoc comments for at least 70 percent of the classes and their members and create an index.html file                    |
 
-#### Demonstrate Concepts
-|    | Concept  | Notes |
-|----|-------|-------|
-|:heavy_check_mark:| Inheritance | |
-|:heavy_check_mark:| Abstract classes | |
-|:heavy_check_mark:| Concrete classes | |
-|:heavy_check_mark:| Instance variables | |
-|:heavy_check_mark:| Static variables | |
-|| Instance methods | |
-|:heavy_check_mark:| Static methods | |
-
-### D. Add functionality to the main form
-
-#### Parts Pane
-|    | Task  | Notes | 
-|----|-------|-------|
-|:heavy_check_mark:| Add button opens the Add Part form | |
-|:heavy_check_mark:| Modify button opens the Modify Part form | |
-|:heavy_check_mark:| Delete button deletes the selected part from the PartsTableView | |
-|:heavy_check_mark:| Delete button creates a descriptive error message if a part is not deleted | |
-|:heavy_check_mark:| Search field above the Parts TableView allows user to search by ID or name | |
-|:heavy_check_mark:| Search field creates a descriptive error message if a part is not found | |
-|:heavy_check_mark:| If search field is empty, display all parts | |
-
-#### Products Pane
-|    | Task  | Notes | 
-|----|-------|-------|
-|:heavy_check_mark:| Add button opens the Add Product form | |
-|:heavy_check_mark:| Modify button opens the Modify Product form | |
-|:heavy_check_mark:| Delete button deletes the selected product from the ProductsTableView | |
-|:heavy_check_mark:| Delete button creates a descriptive error message if a product is not deleted | |
-|:heavy_check_mark:| Search field above the Products TableView allows user to search by ID or name | |
-|:heavy_check_mark:| Search field creates a descriptive error message if a product is not found | |
-|:heavy_check_mark:| If search field is empty, display all products | |
-
-#### Exit Button
-|    | Task  | Notes | 
-|----|-------|-------|
-|:heavy_check_mark:| Exit button closes the application | |
-
-### E. Add Functionality to Parts Forms
-
-#### Add Part Form
-|    | Task  | Notes | 
-|----|-------|-------|
-|:heavy_check_mark:| In-House and Outsourced radio buttons switch the MachineID/CompanyName label to the correct value | |
-|:heavy_check_mark:| Application auto-generates a unique part ID ||
-|:heavy_check_mark:| Part ID text field must be disabled ||
-|:heavy_check_mark:| User should be able to enter data into active text fields ||
-|:heavy_check_mark:| After saving, users are redirected to the Main form ||
-|:heavy_check_mark:| Canceling or exiting form redirects users to the Main form ||
-
-#### Modify Part Form
-|    | Task  | Notes | 
-|----|-------|-------|
-|:heavy_check_mark:| Text fields populate with the data from the chosen part | |
-|:heavy_check_mark:| In-House and Outsourced radio buttons switch the label to the correct value. ||
-|:heavy_check_mark:| Part ID is retained after the save button is clicked and a new object is created ||
-|:heavy_check_mark:| User can modify data values in the text fields except for part ID ||
-|:heavy_check_mark:| After saving, users are redirected to the Main form ||
-|:heavy_check_mark:| Canceling or exiting form redirects users to the Main form ||
-
-
-### F. Add Functionality to Products Forms
-
-#### Add Product Form
-|    | Task  | Notes | 
-|----|-------|-------|
-|:heavy_check_mark:| Application auto-generates a unique product ID ||
-|:heavy_check_mark:| Product ID text field must be disabled ||
-|:heavy_check_mark:| User should be able to enter data into active text fields ||
-|:heavy_check_mark:| User can search for parts by ID or name in the top table ||
-|:heavy_check_mark:| Error message is displayed if the part or parts are not found ||
-|:heavy_check_mark:| If search field is empty, display all parts ||
-|:heavy_check_mark:| Top table is identical to Parts TableView in the Main form ||
-|:heavy_check_mark:| User can add parts to bottom table by selecting parts from top table and clicking add ||
-|:heavy_check_mark:| Remove Associated Part button removes selected part from bottom table ||
-|:heavy_check_mark:| After saving, users are redirected to the Main form ||
-|:heavy_check_mark:| Canceling or exiting form redirects users to the Main form ||
-
-
-#### Modify Product Form
-#### Add Product Form
-|    | Task  | Notes | 
-|----|-------|-------|
-|:heavy_check_mark:| Text fields and TableView populate with the data from the chosen product ||
-|:heavy_check_mark:| User can search for parts by ID or name in the top table ||
-|:heavy_check_mark:| Error message is displayed if the part or parts are not found ||
-|:heavy_check_mark:| If search field is empty, display all parts ||
-|:heavy_check_mark:| User should be able to enter data into active text fields ||
-|:heavy_check_mark:| Top table is identical to Parts TableView in the Main form ||
-|:heavy_check_mark:| User can add parts to bottom table by selecting parts from top table and clicking add ||
-|:heavy_check_mark:| Remove Associated Part button removes selected part from bottom table ||
-|:heavy_check_mark:| After saving, users are redirected to the Main form ||
-|:heavy_check_mark:| Canceling or exiting form redirects users to the Main form ||
-
-### G. Implement input validation and logical error checks
-|    | Task  | Notes | 
-|----|-------|-------|
-|:heavy_check_mark:| Check Min <= Inventory <= Max ||
-|| Part with Product association cannot be deleted ||
-|:heavy_check_mark:| Confirm Delete and Remove actions ||
-|:heavy_check_mark:| Return error messages instead of crashing app on bad entry data ||
-
-### H. Provide a folder containing Javadoc files generated. Mention location in main header declaration.
+### 7. Included in the README.txt file
+| Status | Description                                                        |
+|--------|--------------------------------------------------------------------|
+|        | Title and purpose of application                                   |
+|        | Author, contact, app version, date                                 |
+|        | IDE including version number                                       |
+|        | Full JDK of version used                                           |
+|        | JavaFX version compatible with JDK version                         |
+|        | Directions for how to run program                                  |
+|        | Description of additional report                                   |
+|        | MySQL Connector driver version number, including the update number |
