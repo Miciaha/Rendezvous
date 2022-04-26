@@ -1,4 +1,4 @@
-module com.miciaha.inventorymanager {
+module com.miciaha.rendezvous {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
@@ -7,6 +7,8 @@ module com.miciaha.inventorymanager {
     opens com.miciaha.rendezvous to javafx.fxml;
     exports com.miciaha.rendezvous;
     exports com.miciaha.rendezvous.controllers;
+    exports com.miciaha.rendezvous.entities;
+    opens com.miciaha.rendezvous.entities to javafx.fxml;
     opens com.miciaha.rendezvous.controllers to javafx.fxml;
     exports com.miciaha.rendezvous.utilities;
     opens com.miciaha.rendezvous.utilities to javafx.fxml;

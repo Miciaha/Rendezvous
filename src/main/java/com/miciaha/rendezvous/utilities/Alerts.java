@@ -67,7 +67,7 @@ public class Alerts {
             public SuccessAlert(String commandName){
                 title = "Success!";
                 headerText = "Operation complete!";
-                contentText = "Command " + commandName + " completed successfully.";
+                contentText = commandName + " command completed successfully.";
 
                 createAlert(Alert.AlertType.INFORMATION);
                 customAlert.showAndWait();
