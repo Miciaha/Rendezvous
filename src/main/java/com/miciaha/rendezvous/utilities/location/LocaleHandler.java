@@ -6,8 +6,15 @@ import javafx.beans.property.StringProperty;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Locale;
-import java.util.Properties;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 public class LocaleHandler {
 
@@ -41,5 +48,13 @@ public class LocaleHandler {
             fileInputStream.close();
         }
         return prop;
+    }
+
+    public static LocalDateTime gmtToLocal(Date date){
+        return (date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
+    }
+
+    public static Date localToGMT(LocalDateTime date){
+        return (Date.from(date.toInstant(ZoneOffset.UTC)));
     }
 }

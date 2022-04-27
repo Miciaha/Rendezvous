@@ -1,6 +1,9 @@
 package com.miciaha.rendezvous.utilities;
 
 import com.miciaha.rendezvous.SchedulingApplication;
+import com.miciaha.rendezvous.entities.Appointment;
+import com.miciaha.rendezvous.entities.Customer;
+import com.miciaha.rendezvous.interfaces.FormEditor;
 import com.miciaha.rendezvous.utilities.fields.FieldTracker;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -28,10 +31,6 @@ public class FormManager {
          * The Win title.
          */
         protected String winTitle;
-        /**
-         * The Stylesheet.
-         */
-        protected String stylesheet;
         /**
          * The Form file.
          */
@@ -63,7 +62,6 @@ public class FormManager {
             this.loadedForm = new FXMLLoader(SchedulingApplication.class.getResource(formFile));
             try {
                 Scene scene = new Scene(loadedForm.load(), winSizeX, winSizeY);
-                scene.getStylesheets().add(String.valueOf(SchedulingApplication.class.getResource(stylesheet)));
 
                 Stage form = new Stage();
                 form.setTitle(winTitle);
@@ -74,6 +72,72 @@ public class FormManager {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public static class AppointmentForm extends Form{
+
+        public AppointmentForm(Button callBtn){
+            this.winSizeX = 410;
+            this.winSizeY = 450;
+            this.winTitle = "Appointment Form";
+            this.formFile = "appointment-view.fxml";
+            this.callBtn = callBtn;
+        }
+    }
+
+    public static class CreateAppointmentForm extends AppointmentForm{
+
+        public CreateAppointmentForm(Button callBtn) {
+            super(callBtn);
+            this.winTitle = "Create Appointment Form";
+            openForm();
+        }
+    }
+
+    public static class EditAppointmentForm extends AppointmentForm{
+
+
+        public EditAppointmentForm(Button callBtn, Appointment editAppointment) {
+            super(callBtn);
+            this.winTitle = "Edit Appointment Form";
+
+            openForm();
+            FormEditor<Appointment> controller = loadedForm.getController();
+            controller.initData(editAppointment);
+        }
+    }
+
+    public static class CustomerForm extends Form{
+
+        public CustomerForm(Button callBtn){
+            this.winSizeX = 330;
+            this.winSizeY = 580;
+            this.winTitle = "Customer Form";
+            this.formFile = "customer-view.fxml";
+            this.callBtn = callBtn;
+        }
+    }
+
+    public static class CreateCustomerForm extends CustomerForm{
+
+        public CreateCustomerForm(Button callBtn) {
+            super(callBtn);
+            this.winTitle = "Create Customer Form";
+            openForm();
+        }
+    }
+
+    public static class EditCustomerForm extends CustomerForm{
+
+
+        public EditCustomerForm(Button callBtn, Customer editCustomer) {
+            super(callBtn);
+            this.winTitle = "Edit Customer Form";
+
+            openForm();
+            FormEditor<Customer> controller = loadedForm.getController();
+            controller.initData(editCustomer);
         }
     }
 

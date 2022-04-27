@@ -1,19 +1,36 @@
 package com.miciaha.rendezvous.entities;
 
+import com.miciaha.rendezvous.persistence.ContactDbManager;
+import com.miciaha.rendezvous.persistence.CustomerDbManager;
+import com.miciaha.rendezvous.persistence.UserDbManager;
+
+import java.time.LocalDateTime;
+
 public class Appointment {
     private int ID;
     private String Title;
     private String Description;
     private String Location;
     private String Type;
-    private String Start;
-    private String End;
-    private User user;
-    private Customer customer;
-    private Contact contact;
+    private LocalDateTime Start;
+    private LocalDateTime End;
+    private User User;
+    private Customer Customer;
+    private Contact Contact;
 
-    public Appointment(){
+    public Appointment(int id, String title, String description, String location, String type,
+                       LocalDateTime start, LocalDateTime end, int userID, int customerID, int contactID){
 
+        ID = id;
+        Title = title;
+        Description = description;
+        Location = location;
+        Type = type;
+        Start = start;
+        End = end;
+        User = UserDbManager.getUser(userID);
+        Customer = CustomerDbManager.getCustomer(customerID);
+        Contact = ContactDbManager.getContact(contactID);
     }
 
     public int getID(){
@@ -36,20 +53,62 @@ public class Appointment {
         return Type;
     }
 
-    public String getStart(){
+    public LocalDateTime getStart(){
         return Start;
     }
 
-    public String getEnd(){
+    public LocalDateTime getEnd(){
         return End;
     }
 
+    public User getUser(){return User;}
+
     public Customer getCustomer(){
-        return customer;
+        return Customer;
     }
 
     public Contact getContact(){
-        return contact;
+        return Contact;
+    }
+
+    public void setID(int id){
+        ID = id;
+    }
+
+    public void setTitle(String title){
+        Title = title;
+    }
+
+    public void setDescription(String description){
+        Description = description;
+    }
+
+    public void setLocation(String location){
+        Location = location;
+    }
+
+    public void setType(String type){
+        Type = type;
+    }
+
+    public void setStart(LocalDateTime startDate){
+        Start = startDate;
+    }
+
+    public void setEnd(LocalDateTime endDate){
+        End = endDate;
+    }
+
+    public void setUser(User user){
+        User = user;
+    }
+
+    public void setCustomer(Customer customer){
+        Customer = customer;
+    }
+
+    public void setContact(Contact contact){
+        Contact = contact;
     }
 
 

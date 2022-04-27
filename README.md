@@ -11,15 +11,15 @@
 | :heavy_check_mark:  | Translates error control messages into English or French based on the user’s computer language setting |
 
 ### 2. Customers
-| Status | Task                                                                           |
-|--------|--------------------------------------------------------------------------------|
-|        | Customer records can be added, updated, and deleted                            |
-|        | Collect customer name, address, postal code, and phone number                  |
-|        | Country and first-level division data is pre-populated in separate combo boxes |
-|        | All of the original customer information is displayed on the update form       |
-|        | All of the fields can be updated except for Customer_ID                        |
-|        | Customer data is displayed using a TableView                                   |
-|        | Message is displayed in the user interface when a customer is deleted          |
+| Status              | Task                                                                           |
+|---------------------|--------------------------------------------------------------------------------|
+| :heavy_check_mark:  | Customer records can be added, updated, and deleted                            |
+| :heavy_check_mark:  | Collect customer name, address, postal code, and phone number                  |
+| :heavy_check_mark:  | Country and first-level division data is pre-populated in separate combo boxes |
+| :heavy_check_mark:  | All of the original customer information is displayed on the update form       |
+| :heavy_check_mark:  | All of the fields can be updated except for Customer_ID                        |
+| :heavy_check_mark:  | Customer data is displayed using a TableView                                   |
+| :heavy_check_mark:  | Message is displayed in the user interface when a customer is deleted          |
 
 ### 3. Appointments
 | Status | Task                                                                       |
@@ -47,11 +47,11 @@
 |        | Security report: application entry attempts                                                                                                                       |
 
 ### 6. Final Tasks
-| Status | Description                                                                                                                        |
-|--------|------------------------------------------------------------------------------------------------------------------------------------|
-|        | Write at least two different lambda expressions                                                                                    |
-|        | Record all user log-in attempts, dates, and time stamps and whether each attempt was successful in a file named login_activity.txt |
-|        | Provide Javadoc comments for at least 70 percent of the classes and their members and create an index.html file                    |
+| Status              | Description                                                                                                                        |
+|---------------------|------------------------------------------------------------------------------------------------------------------------------------|
+| :heavy_check_mark:  | Write at least two different lambda expressions                                                                                    |
+|                     | Record all user log-in attempts, dates, and time stamps and whether each attempt was successful in a file named login_activity.txt |
+|                     | Provide Javadoc comments for at least 70 percent of the classes and their members and create an index.html file                    |
 
 ### 7. Included in the README.txt file
 | Status | Description                                                        |

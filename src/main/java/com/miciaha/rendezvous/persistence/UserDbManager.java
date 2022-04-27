@@ -32,4 +32,21 @@ public class UserDbManager {
             return pw.equals(password);
         }
     }
+
+    public static User getUser(int userID){
+        String statement = "SELECT * FROM USERS WHERE User_ID = " + userID;
+
+        try {
+            ResultSet rs = SQLDBConnection.runQuery(statement);
+
+            if(!(rs == null)){
+                int id = rs.getInt("User_ID");
+                String username = rs.getString("User_Name");
+                return(new User(id, username));
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

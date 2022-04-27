@@ -4,8 +4,14 @@ import com.miciaha.rendezvous.entities.Appointment;
 import com.miciaha.rendezvous.entities.CurrentUser;
 import com.miciaha.rendezvous.interfaces.DbManager;
 import com.miciaha.rendezvous.utilities.database.SQLDBConnection;
+import com.miciaha.rendezvous.utilities.location.LocaleHandler;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 public class AppointmentDbManager implements DbManager<Appointment> {
     @Override
@@ -48,6 +54,38 @@ public class AppointmentDbManager implements DbManager<Appointment> {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public ObservableList<Appointment> getAllAppointments(){
+        ObservableList<Appointment> appointments = FXCollections.observableArrayList();
+        String statement =  "SELECT * FROM APPOINTMENTS";
+
+        try {
+            ResultSet rs = SQLDBConnection.runQuery(statement);
+
+            if(!(rs==null)){
+                do {
+                    int id = rs.getInt("Appointment_ID");
+                    String title = rs.getString("Title");
+                    String description = rs.getString("Description");
+                    String location = rs.getString("Location");
+                    String type = rs.getString("Type");
+                    LocalDateTime startDateTime = LocaleHandler.gmtToLocal(rs.getDate("Start"));
+                    LocalDateTime endDateTime = LocaleHandler.gmtToLocal(rs.getDate("End"));
+                    int customerID = rs.getInt("Customer_ID");
+                    int userID = rs.getInt("User_ID");
+                    int contactID = rs.getInt("Contact_ID");
+
+
+                    Appointment appointment = new Appointment(id, title, description, location, type,
+                                                    startDateTime, endDateTime, customerID, userID, contactID);
+                    appointments.add(appointment);
+                } while (rs.next());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return appointments;
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.miciaha.rendezvous.entities;
 
+import com.miciaha.rendezvous.persistence.DivisionDbManager;
+
 public class Customer {
     private int ID;
     private String Name;
@@ -12,12 +14,21 @@ public class Customer {
 
     }
 
-    public Customer(String name, String address, String postCode, String phone, String divisionName){
+    public Customer(int id, String name, String address, String postCode, String phone, int divisionID){
+        ID = id;
         Name = name;
         Address = address;
         PostCode = postCode;
         Phone = phone;
-        Division = CountryDivision.getDivision(divisionName);
+        Division = DivisionDbManager.getDivision(divisionID);
+    }
+
+    public Customer(String name, String address, String postCode, String phone, Division division){
+        Name = name;
+        Address = address;
+        PostCode = postCode;
+        Phone = phone;
+        Division = division;
     }
 
     public int getID(){
@@ -44,19 +55,28 @@ public class Customer {
             return Division;
     }
 
+    public void setID(int id){
+        ID = id;
+    }
+
     public void setName(String name){
+        Name = name;
     }
 
     public void setAddress(String address){
+        Address = address;
     }
 
     public void setPostCode(String code){
+        PostCode = code;
     }
 
     public void setPhone(String phone){
+        Phone = phone;
     }
 
-    public void setDivision(String division){
+    public void setDivision(Division division){
+        Division = division;
     }
 
 }

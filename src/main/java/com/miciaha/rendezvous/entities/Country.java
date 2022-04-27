@@ -16,4 +16,12 @@ public class Country {
     public String getName(){
         return Name;
     }
+
+    public void setID(int id){
+        ID = id;
+    }
+
+    public void setName(String name){
+        Name = name;
+    }
 }

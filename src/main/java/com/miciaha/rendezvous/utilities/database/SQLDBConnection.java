@@ -24,4 +24,37 @@ public class SQLDBConnection{
 
         return stmt.executeUpdate() > 0;
     }
+
+    public static int getMaxId(String tableName){
+
+        String idCol = null, table = null;
+
+        switch (tableName){
+            case "Appointment":
+                idCol = "Appointment_ID";
+                table = "APPOINTMENTS";
+                break;
+            case "Customer":
+                idCol = "Customer_ID";
+                table = "CUSTOMERS";
+                break;
+            case "Contact":
+                idCol = "Contact_ID";
+                table = "CONTACTS";
+                break;
+        }
+        if(idCol != null){
+            String query = "SELECT MAX("+ idCol + ") AS num FROM " + table;
+            int maxID = 0;
+            try {
+                ResultSet rs = SQLDBConnection.runQuery(query);
+                maxID = rs.getInt("num");
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+            return maxID+1;
+        }
+        return 0;
+    }
 }

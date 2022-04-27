@@ -2,21 +2,24 @@ package com.miciaha.rendezvous.persistence;
 
 import com.miciaha.rendezvous.entities.CurrentUser;
 import com.miciaha.rendezvous.entities.Customer;
+import com.miciaha.rendezvous.interfaces.Command;
 import com.miciaha.rendezvous.interfaces.DbManager;
 import com.miciaha.rendezvous.utilities.database.SQLDBConnection;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class CustomerDbManager implements DbManager<Customer> {
     @Override
     public boolean Create(Customer customer) {
 
-        int newID = getMaxId() + 1;
         int divisionID = customer.getDivision().getID();
 
         String query = "INSERT INTO CUSTOMERS (Customer_ID, Customer_Name, Address, Postal_Code, Phone," +
                                     "Create_Date,Created_By,Last_Update,Last_Updated_By, Division_ID)" +
-                        "VALUES ("+ newID + ", '" + customer.getName() + "', '" + customer.getAddress() + "', '" + customer.getPostCode() +
+                        "VALUES ("+ customer.getID() + ", '" + customer.getName() + "', '" + customer.getAddress() + "', '" + customer.getPostCode() +
                             "', '" + customer.getPhone() + "', SYSUTCDATETIME(), '" +  CurrentUser.getName() + "', SYSUTCDATETIME(), '" +
                             CurrentUser.getName() + "', " +  divisionID + ")";
 
@@ -26,6 +29,54 @@ public class CustomerDbManager implements DbManager<Customer> {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public static Customer getCustomer(int customerID){
+        String statement = "SELECT * FROM CUSTOMERS WHERE Customer_ID = " + customerID;
+
+        try {
+            ResultSet rs = SQLDBConnection.runQuery(statement);
+
+            if(!(rs==null)){
+                int id = rs.getInt("Customer_ID");
+                String name = rs.getString("Customer_Name");
+                String address = rs.getString("Address");
+                String postCode = rs.getString("Postal_Code");
+                String phone = rs.getString("Phone");
+                int divisionID = rs.getInt("Division_ID");
+
+                return (new Customer(id, name, address, postCode, phone, divisionID));
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public ObservableList<Customer> getAllCustomers(){
+        ObservableList<Customer> customers = FXCollections.observableArrayList();
+        String statement =  "SELECT * FROM CUSTOMERS";
+
+        try {
+            ResultSet rs = SQLDBConnection.runQuery(statement);
+
+            if(!(rs==null)){
+                do {
+                    int id = rs.getInt("Customer_ID");
+                    String name = rs.getString("Customer_Name");
+                    String address = rs.getString("Address");
+                    String postCode = rs.getString("Postal_Code");
+                    String phone = rs.getString("Phone");
+                    int divisionID = rs.getInt("Division_ID");
+
+                    Customer customer = new Customer(id, name, address, postCode, phone, divisionID);
+                    customers.add(customer);
+                } while (rs.next());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return customers;
     }
 
     @Override
@@ -47,7 +98,6 @@ public class CustomerDbManager implements DbManager<Customer> {
         }
     }
 
-    // Cascade delete is set within the database to remove appointments related to the customer
     @Override
     public boolean Delete(Customer customer) {
 
@@ -61,31 +111,5 @@ public class CustomerDbManager implements DbManager<Customer> {
             e.printStackTrace();
             return false;
         }
-    }
-
-    public boolean Delete(int customerId){
-        String query = "DELETE FROM APPOINTMENTS Where Customer_ID = " + customerId + ";" +
-                "DELETE FROM CUSTOMERS Where Customer_ID = " + customerId + ";";
-
-        try {
-            SQLDBConnection.runQuery(query);
-            return true;
-        } catch (Exception e){
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    private int getMaxId(){
-        String query = "SELECT MAX(Customer_ID) AS num FROM CUSTOMERS";
-        int maxID = 0;
-        try {
-            ResultSet rs = SQLDBConnection.runQuery(query);
-            maxID = rs.getInt("num");
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-        return maxID;
     }
 }
