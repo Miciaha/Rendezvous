@@ -5,23 +5,49 @@ import javafx.scene.layout.Pane;
 
 import java.util.HashMap;
 
+/**
+ * The type Screen controller.
+ */
 public class ScreenController {
-    private static HashMap<String, Pane> screenMap = new HashMap<>();
-    private static Scene main ;
+    private static final HashMap<String, Pane> screenMap = new HashMap<>();
+    private static Scene main;
 
-    public static void setMainScene(Scene Main){
+    /**
+     * Set main scene.
+     *
+     * @param Main the main
+     */
+    public static void setMainScene(Scene Main) {
         main = Main;
     }
 
-    public static void addScreen(String name, Pane pane){
+    /**
+     * Add screen.
+     *
+     * @param name the name
+     * @param pane the pane
+     */
+    public static void addScreen(String name, Pane pane) {
         screenMap.put(name, pane);
     }
 
-    public static void removeScreen(String name){
+    /**
+     * Remove screen.
+     *
+     * @param name the name
+     */
+    public static void removeScreen(String name) {
         screenMap.remove(name);
     }
 
-    public static void activate(String name, double x, double y){
+    /**
+     * Activate.
+     *
+     * @param name the name
+     * @param x    the x
+     * @param y    the y
+     */
+    public static void activate(String name, double x, double y) {
         main.getWindow().setHeight(y);
         main.getWindow().setWidth(x);
         main.setRoot(screenMap.get(name));

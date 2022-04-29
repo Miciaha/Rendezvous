@@ -7,9 +7,7 @@ import javafx.beans.value.ChangeListener;
  */
 public interface FormFieldValidator extends ChangeListener<String> {
     /**
-     * Check field boolean.
-     *
-     * @return the boolean
+     * Check field.
      */
-    boolean checkField();
+    void checkField();
 }

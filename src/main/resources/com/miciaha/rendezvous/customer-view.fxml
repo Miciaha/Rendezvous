@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="580.0" prefWidth="330.0" stylesheets="@assets/main.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.miciaha.rendezvous.controllers.CustomerViewController">
+<VBox prefHeight="540.0" prefWidth="330.0" stylesheets="@assets/main.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.miciaha.rendezvous.controllers.CustomerViewController">
     <AnchorPane prefHeight="612.0" prefWidth="497.0" VBox.vgrow="ALWAYS">
         <Group>
             <Rectangle fill="DODGERBLUE" height="50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="330.0" />
@@ -26,34 +26,41 @@
             <Text layoutX="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
             <Label fx:id="nameErrorLabel" layoutX="1.0" layoutY="33.0" styleClass="error-label" text="Error label" />
         </Group>
-        <Group layoutX="28.0" layoutY="184.0">
+        <Group layoutX="28.0" layoutY="295.0">
             <ComboBox fx:id="CountryCmb" layoutY="8.94921875" prefHeight="25.0" prefWidth="174.0" />
             <Text layoutX="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Country" />
             <Label fx:id="countryErrorLabel" layoutX="1.0" layoutY="33.94921875" styleClass="error-label" text="Error label" />
         </Group>
-        <Group layoutX="28.0" layoutY="259.0">
+        <Group layoutX="28.0" layoutY="349.0">
             <ComboBox fx:id="DivisionCmb" layoutY="7.94921875" prefHeight="25.0" prefWidth="174.0" />
             <Text layoutX="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Division" />
             <Label fx:id="divisionErrorLabel" layoutX="1.0" layoutY="32.0" styleClass="error-label" text="Label" />
         </Group>
-        <Group layoutX="29.0" layoutY="327.0">
+        <Group layoutX="28.0" layoutY="174.0">
             <TextField fx:id="addressTF" layoutY="7.0" prefHeight="25.0" prefWidth="275.0" />
-            <Text layoutX="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" />
+            <Text layoutX="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Street Address" />
             <Label fx:id="addressErrorLabel" layoutX="1.0" layoutY="29.0" styleClass="error-label" text="Label" />
         </Group>
-        <Group layoutX="28.0" layoutY="396.0">
+        <Group layoutX="175.0" layoutY="237.0">
             <TextField fx:id="postTF" layoutY="4.94921875" prefHeight="25.0" prefWidth="81.0" />
             <Text layoutX="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Postal Code" />
             <Label fx:id="postErrorLabel" layoutX="1.0" layoutY="28.0" styleClass="error-label" text="Label" />
         </Group>
-        <Group layoutX="28.0" layoutY="459.0">
+        <Group layoutX="27.0" layoutY="406.0">
             <TextField fx:id="phoneTF" layoutY="14.0" />
             <Text layoutX="1.0" layoutY="8.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number" />
             <Label fx:id="phoneErrorLabel" layoutX="1.0" layoutY="36.0" styleClass="error-label" text="Label" />
         </Group>
-        <Button fx:id="saveButton" layoutX="93.0" layoutY="541.0" mnemonicParsing="false" prefWidth="63.0" styleClass="btnSave" text="Save" />
-        <Button fx:id="cancelButton" layoutX="189.0" layoutY="541.0" mnemonicParsing="false" styleClass="btnCancel" text="Cancel" />
+        <Button fx:id="saveButton" layoutX="91.0" layoutY="480.0" mnemonicParsing="false" prefWidth="63.0" styleClass="btnSave" text="Save" />
+        <Button fx:id="cancelButton" layoutX="187.0" layoutY="480.0" mnemonicParsing="false" styleClass="btnCancel" text="Cancel" />
       <TextField fx:id="idTF" disable="true" editable="false" layoutX="146.0" layoutY="64.0" prefHeight="25.0" prefWidth="47.0" />
       <Text fill="#c3c3c3" layoutX="122.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
+      <Group layoutX="28.0" layoutY="235.0">
+         <children>
+            <TextField fx:id="cityTF" layoutY="7.0" prefHeight="25.0" prefWidth="117.0" />
+            <Text layoutX="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City" />
+            <Label fx:id="cityErrorLabel" layoutX="1.0" layoutY="29.0" styleClass="error-label" text="Label" />
+         </children>
+      </Group>
     </AnchorPane>
 </VBox>

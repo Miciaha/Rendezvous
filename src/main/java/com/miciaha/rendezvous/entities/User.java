@@ -1,11 +1,21 @@
-
 package com.miciaha.rendezvous.entities;
 
-public class User {
+import com.miciaha.rendezvous.interfaces.DBEntity;
+
+/**
+ * The type User.
+ */
+public class User implements DBEntity {
     private final int ID;
     private final String Username;
 
-    public User(int id, String name){
+    /**
+     * Instantiates a new User.
+     *
+     * @param id   the id
+     * @param name the name
+     */
+    public User(int id, String name) {
         ID = id;
         Username = name;
     }
@@ -14,7 +24,12 @@ public class User {
         return ID;
     }
 
-    public String getUsername(){
+    /**
+     * Get username string.
+     *
+     * @return the string
+     */
+    public String getUsername() {
         return Username;
     }
 

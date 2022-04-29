@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox prefHeight="670.0" prefWidth="950.0" stylesheets="@assets/main.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.miciaha.rendezvous.controllers.ReportViewController">
+  <children>
+    <AnchorPane prefHeight="677.0" prefWidth="935.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Rectangle fill="DODGERBLUE" height="73.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="950.0" />
+            <Text fill="WHITE" layoutX="366.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reports Dashboard">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Group layoutX="39.0" layoutY="113.0">
+               <children>
+                  <Text fill="#6b6b6b" layoutX="104.0" layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Appointments">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+                  <TableView fx:id="customerAppointmentTable" layoutY="28.107421875" prefHeight="191.0" prefWidth="380.0">
+                    <columns>
+                      <TableColumn fx:id="appointmentCountCol" prefWidth="73.0" text="Count" />
+                      <TableColumn fx:id="appointmentTypeCol" prefWidth="201.0" text="Type" />
+                        <TableColumn fx:id="appMonthCol" prefWidth="105.0" text="Month" />
+                    </columns>
+                  </TableView>
+               </children>
+            </Group>
+            <Group layoutX="39.0" layoutY="387.0">
+               <children>
+                  <Text fill="#6b6b6b" layoutX="367.0" layoutY="8.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contacts Schedule">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+                  <TableView fx:id="contactScheduleTable" layoutY="29.107421875" prefHeight="216.0" prefWidth="881.0">
+                     <columns>
+                        <TableColumn fx:id="contactNameCol" prefWidth="121.0" text="Contact " />
+                        <TableColumn fx:id="contactAppIdCol" prefWidth="106.0" text="Appointment ID" />
+                        <TableColumn fx:id="contactTitleCol" prefWidth="111.0" text="Title" />
+                        <TableColumn fx:id="contactTypeCol" prefWidth="79.0" text="Type" />
+                        <TableColumn fx:id="contactDescriptionCol" prefWidth="139.0" text="Description" />
+                        <TableColumn fx:id="contactStartCol" prefWidth="116.0" text="Start Date/Time" />
+                        <TableColumn fx:id="contactEndCol" prefWidth="118.0" text="End Date/Time" />
+                        <TableColumn fx:id="contactCustomerIDCol" prefWidth="90.0" text="Customer ID" />
+                     </columns>
+                  </TableView>
+               </children>
+            </Group>
+            <Group layoutX="530.0" layoutY="114.0">
+               <children>
+                  <Text fill="#6b6b6b" layoutX="136.0" layoutY="12.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login Attempts">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+                  <TableView fx:id="loginAttemptsTable" layoutY="29.107421875" prefHeight="191.0" prefWidth="380.0">
+                     <columns>
+                        <TableColumn fx:id="loginDateCol" prefWidth="73.0" text="Date" />
+                        <TableColumn fx:id="loginTimeCol" prefWidth="93.0" text="Time" />
+                        <TableColumn fx:id="loginUserCol" prefWidth="121.0" text="User" />
+                        <TableColumn fx:id="loginAttempt" prefWidth="92.0" text="Attempt" />
+                     </columns>
+                  </TableView>
+               </children>
+            </Group>
+         </children>
+    </AnchorPane>
+  </children>
+</VBox>

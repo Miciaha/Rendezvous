@@ -5,7 +5,7 @@ package com.miciaha.rendezvous.interfaces;
  *
  * @param <T> the type parameter
  */
-public interface FormEditor<T>{
+public interface FormEditor<T> {
     /**
      * Init data.
      *

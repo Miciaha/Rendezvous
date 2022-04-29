@@ -75,9 +75,37 @@ public class FormManager {
         }
     }
 
-    public static class AppointmentForm extends Form{
+    /**
+     * The type Report form.
+     */
+    public static class ReportForm extends Form {
 
-        public AppointmentForm(Button callBtn){
+        /**
+         * Instantiates a new Report form.
+         *
+         * @param callBtn the call btn
+         */
+        public ReportForm(Button callBtn) {
+            this.winSizeX = 950;
+            this.winSizeY = 670;
+            this.winTitle = "Reports Dashboard";
+            this.formFile = "reports-view.fxml";
+            this.callBtn = callBtn;
+            openForm();
+        }
+    }
+
+    /**
+     * The type Appointment form.
+     */
+    public static class AppointmentForm extends Form {
+
+        /**
+         * Instantiates a new Appointment form.
+         *
+         * @param callBtn the call btn
+         */
+        public AppointmentForm(Button callBtn) {
             this.winSizeX = 410;
             this.winSizeY = 450;
             this.winTitle = "Appointment Form";
@@ -86,8 +114,16 @@ public class FormManager {
         }
     }
 
-    public static class CreateAppointmentForm extends AppointmentForm{
+    /**
+     * The type Create appointment form.
+     */
+    public static class CreateAppointmentForm extends AppointmentForm {
 
+        /**
+         * Instantiates a new Create appointment form.
+         *
+         * @param callBtn the call btn
+         */
         public CreateAppointmentForm(Button callBtn) {
             super(callBtn);
             this.winTitle = "Create Appointment Form";
@@ -95,9 +131,18 @@ public class FormManager {
         }
     }
 
-    public static class EditAppointmentForm extends AppointmentForm{
+    /**
+     * The type Edit appointment form.
+     */
+    public static class EditAppointmentForm extends AppointmentForm {
 
 
+        /**
+         * Instantiates a new Edit appointment form.
+         *
+         * @param callBtn         the call btn
+         * @param editAppointment the edit appointment
+         */
         public EditAppointmentForm(Button callBtn, Appointment editAppointment) {
             super(callBtn);
             this.winTitle = "Edit Appointment Form";
@@ -108,19 +153,35 @@ public class FormManager {
         }
     }
 
-    public static class CustomerForm extends Form{
+    /**
+     * The type Customer form.
+     */
+    public static class CustomerForm extends Form {
 
-        public CustomerForm(Button callBtn){
+        /**
+         * Instantiates a new Customer form.
+         *
+         * @param callBtn the call btn
+         */
+        public CustomerForm(Button callBtn) {
             this.winSizeX = 330;
-            this.winSizeY = 580;
+            this.winSizeY = 540;
             this.winTitle = "Customer Form";
             this.formFile = "customer-view.fxml";
             this.callBtn = callBtn;
         }
     }
 
-    public static class CreateCustomerForm extends CustomerForm{
+    /**
+     * The type Create customer form.
+     */
+    public static class CreateCustomerForm extends CustomerForm {
 
+        /**
+         * Instantiates a new Create customer form.
+         *
+         * @param callBtn the call btn
+         */
         public CreateCustomerForm(Button callBtn) {
             super(callBtn);
             this.winTitle = "Create Customer Form";
@@ -128,9 +189,18 @@ public class FormManager {
         }
     }
 
-    public static class EditCustomerForm extends CustomerForm{
+    /**
+     * The type Edit customer form.
+     */
+    public static class EditCustomerForm extends CustomerForm {
 
 
+        /**
+         * Instantiates a new Edit customer form.
+         *
+         * @param callBtn      the call btn
+         * @param editCustomer the edit customer
+         */
         public EditCustomerForm(Button callBtn, Customer editCustomer) {
             super(callBtn);
             this.winTitle = "Edit Customer Form";
@@ -147,7 +217,7 @@ public class FormManager {
      * @param button the button
      */
     public static void closeForm(Button button) {
-        FieldTracker.Fields.clear();
+        FieldTracker.clear();
         Stage btnStage = (Stage) button.getScene().getWindow();
         btnStage.close();
     }

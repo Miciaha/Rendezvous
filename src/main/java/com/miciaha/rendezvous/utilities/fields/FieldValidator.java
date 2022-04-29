@@ -1,17 +1,97 @@
 package com.miciaha.rendezvous.utilities.fields;
 
 import com.miciaha.rendezvous.interfaces.FormFieldValidator;
-import com.miciaha.rendezvous.utilities.Alerts;
 import com.miciaha.rendezvous.utilities.location.LocaleHandler;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+
+import java.util.Objects;
 
 
 /**
  * The type Field validator validates field according to their field type.
  */
 public class FieldValidator {
+
+
+    /**
+     * The type Combo field validator.
+     */
+    public static class ComboFieldValidator implements EventHandler<ActionEvent> {
+        private final ComboBox<String> comboField;
+        private final Label errorText;
+        private boolean isValid = false;
+
+        /**
+         * Instantiates a new Combo field validator.
+         *
+         * @param comboBoxField the combo box field
+         */
+        public ComboFieldValidator(FormField<ComboBox<String>> comboBoxField) {
+            comboField = comboBoxField.field;
+            errorText = comboBoxField.textFieldErrorLabel;
+        }
+
+        @Override
+        public void handle(ActionEvent actionEvent) {
+            if (comboField.getValue().isEmpty()) {
+                errorText.textProperty().setValue("Please enter a value.");
+
+                if (isValid) {
+                    isValid = false;
+                    FieldTracker.decreaseValidFields();
+                }
+            } else {
+                if (!isValid) {
+                    errorText.textProperty().setValue("");
+                    isValid = true;
+                    FieldTracker.increaseValidFields();
+                }
+            }
+        }
+    }
+
+    /**
+     * The type Date field validator.
+     */
+    public static class DateFieldValidator implements EventHandler<ActionEvent> {
+        private final DatePicker dateField;
+        private final Label errorText;
+        private boolean isValid = false;
+
+        /**
+         * Instantiates a new Date field validator.
+         *
+         * @param datePickerField the date picker field
+         */
+        public DateFieldValidator(FormField<DatePicker> datePickerField) {
+            dateField = datePickerField.field;
+            errorText = datePickerField.textFieldErrorLabel;
+        }
+
+        @Override
+        public void handle(ActionEvent actionEvent) {
+            if (Objects.isNull(dateField.getValue())) {
+                errorText.textProperty().setValue("Please enter a date.");
+
+                if (isValid) {
+                    isValid = false;
+                    FieldTracker.decreaseValidFields();
+                }
+            } else {
+                if (!isValid) {
+                    errorText.textProperty().setValue("");
+                    isValid = true;
+                    FieldTracker.increaseValidFields();
+                }
+            }
+        }
+    }
 
     /**
      * The type Text field validator.
@@ -56,13 +136,11 @@ public class FieldValidator {
             checkField();
         }
 
-        public boolean checkField() {
+        public void checkField() {
             if (text.trim().isEmpty()) {
                 setErrorValues();
-                return false;
             } else {
                 setValidValues();
-                return true;
             }
         }
 
@@ -72,7 +150,7 @@ public class FieldValidator {
         protected void updateValid() {
             if (!isValid) {
                 isValid = true;
-                FieldTracker.Fields.addValidFields();
+                FieldTracker.increaseValidFields();
             }
         }
 
@@ -82,7 +160,7 @@ public class FieldValidator {
         protected void updateInvalid() {
             if (isValid) {
                 isValid = false;
-                FieldTracker.Fields.decreaseValidFields();
+                FieldTracker.decreaseValidFields();
             }
         }
 
@@ -90,11 +168,11 @@ public class FieldValidator {
          * Sets error values.
          */
         protected void setErrorValues() {
-            if(!field.getStyleClass().contains("invalid-field")) {
+            if (!field.getStyleClass().contains("invalid-field")) {
                 field.getStyleClass().add("invalid-field");
             }
             field.getStyleClass().remove("valid-field");
-            LocaleHandler.setText(errorLabel.textProperty(),"error_text");
+            LocaleHandler.setText(errorLabel.textProperty(), "error_text");
             errorLabel.visibleProperty().setValue(true);
             updateInvalid();
         }
@@ -103,131 +181,12 @@ public class FieldValidator {
          * Sets valid values.
          */
         protected void setValidValues() {
-            if(!field.getStyleClass().contains("valid-field")){
+            if (!field.getStyleClass().contains("valid-field")) {
                 field.getStyleClass().add("valid-field");
             }
             field.getStyleClass().remove("invalid-field");
             errorLabel.visibleProperty().setValue(false);
             updateValid();
-        }
-    }
-
-    /**
-     * The type Integer field validator.
-     */
-    public static class IntegerFieldValidator extends TextFieldValidator implements FormFieldValidator {
-        /**
-         * Instantiates a new Integer field validator.
-         *
-         * @param field      the field
-         * @param errorLabel the error label
-         */
-        public IntegerFieldValidator(TextField field, Label errorLabel) {
-            super(field, errorLabel);
-            this.errorText = "Please enter a valid integer";
-        }
-
-        @Override
-        public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-            this.text = t1;
-            if (checkField()) {
-                if (checkIntField()) {
-                    setValidValues();
-                } else {
-                    setErrorValues();
-                }
-            }
-        }
-
-        @Override
-        public boolean checkField() {
-            if (text.trim().isEmpty()) {
-                setErrorValues();
-                return false;
-            } else {
-                return true;
-            }
-        }
-
-        private boolean checkIntField() {
-            try {
-                Integer.parseInt(text);
-            } catch (NumberFormatException e) {
-                System.out.print(e.getMessage());
-                return false;
-            }
-            return true;
-        }
-    }
-
-    /**
-     * The type Double field validator.
-     */
-    public static class DoubleFieldValidator extends TextFieldValidator implements FormFieldValidator {
-        /**
-         * Instantiates a new Double field validator.
-         *
-         * @param field      the field
-         * @param errorLabel the error label
-         */
-        public DoubleFieldValidator(TextField field, Label errorLabel) {
-            super(field, errorLabel);
-            this.errorText = "Please enter a valid number";
-        }
-
-        @Override
-        public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-            this.text = t1;
-            if (checkField()) {
-                if (checkDoubleField()) {
-                    setValidValues();
-                } else {
-                    setErrorValues();
-                }
-            }
-        }
-
-        @Override
-        public boolean checkField() {
-            if (text.trim().isEmpty()) {
-                setErrorValues();
-                return false;
-            } else {
-                return true;
-            }
-        }
-
-        private boolean checkDoubleField() {
-            try {
-                Double.parseDouble(text);
-            } catch (Exception e) {
-                System.out.print(e.getMessage());
-                return false;
-            }
-            return true;
-        }
-    }
-
-    /**
-     * The type Check field logic.
-     */
-    public static class checkFieldLogic {
-        /**
-         * Check stock boolean.
-         *
-         * @param min       the min
-         * @param max       the max
-         * @param inventory the inventory
-         * @return the boolean
-         */
-        public static boolean checkStock(int min, int max, int inventory) {
-            if (inventory > max || min > inventory) {
-                new Alerts.CustomAlert.WarningAlert(
-                        "Fix inventory values",
-                        "Please ensure inventory is between the minimum and maximum values.");
-                return false;
-            }
-            return true;
         }
     }
 }

@@ -1,8 +1,12 @@
 package com.miciaha.rendezvous.entities;
 
+import com.miciaha.rendezvous.interfaces.DBEntity;
 import com.miciaha.rendezvous.persistence.DivisionDbManager;
 
-public class Customer {
+/**
+ * The type Customer.
+ */
+public class Customer implements DBEntity {
     private int ID;
     private String Name;
     private String Address;
@@ -10,11 +14,24 @@ public class Customer {
     private String Phone;
     private Division Division;
 
-    public Customer(){
+    /**
+     * Instantiates a new Customer.
+     */
+    public Customer() {
 
     }
 
-    public Customer(int id, String name, String address, String postCode, String phone, int divisionID){
+    /**
+     * Instantiates a new Customer.
+     *
+     * @param id         the id
+     * @param name       the name
+     * @param address    the address
+     * @param postCode   the post code
+     * @param phone      the phone
+     * @param divisionID the division id
+     */
+    public Customer(int id, String name, String address, String postCode, String phone, int divisionID) {
         ID = id;
         Name = name;
         Address = address;
@@ -23,7 +40,16 @@ public class Customer {
         Division = DivisionDbManager.getDivision(divisionID);
     }
 
-    public Customer(String name, String address, String postCode, String phone, Division division){
+    /**
+     * Instantiates a new Customer.
+     *
+     * @param name     the name
+     * @param address  the address
+     * @param postCode the post code
+     * @param phone    the phone
+     * @param division the division
+     */
+    public Customer(String name, String address, String postCode, String phone, Division division) {
         Name = name;
         Address = address;
         PostCode = postCode;
@@ -31,51 +57,106 @@ public class Customer {
         Division = division;
     }
 
-    public int getID(){
+    public int getID() {
         return ID;
     }
 
-    public String getName(){
+    /**
+     * Get name string.
+     *
+     * @return the string
+     */
+    public String getName() {
         return Name;
     }
 
-    public String getAddress(){
-            return Address;
+    /**
+     * Get address string.
+     *
+     * @return the string
+     */
+    public String getAddress() {
+        return Address;
     }
 
-    public String getPostCode(){
-            return PostCode;
+    /**
+     * Get post code string.
+     *
+     * @return the string
+     */
+    public String getPostCode() {
+        return PostCode;
     }
 
-    public String getPhone(){
-            return Phone;
+    /**
+     * Get phone string.
+     *
+     * @return the string
+     */
+    public String getPhone() {
+        return Phone;
     }
 
-    public Division getDivision(){
-            return Division;
+    /**
+     * Get division division.
+     *
+     * @return the division
+     */
+    public Division getDivision() {
+        return Division;
     }
 
-    public void setID(int id){
+    /**
+     * Set id.
+     *
+     * @param id the id
+     */
+    public void setID(int id) {
         ID = id;
     }
 
-    public void setName(String name){
+    /**
+     * Set name.
+     *
+     * @param name the name
+     */
+    public void setName(String name) {
         Name = name;
     }
 
-    public void setAddress(String address){
+    /**
+     * Set address.
+     *
+     * @param address the address
+     */
+    public void setAddress(String address) {
         Address = address;
     }
 
-    public void setPostCode(String code){
+    /**
+     * Set post code.
+     *
+     * @param code the code
+     */
+    public void setPostCode(String code) {
         PostCode = code;
     }
 
-    public void setPhone(String phone){
+    /**
+     * Set phone.
+     *
+     * @param phone the phone
+     */
+    public void setPhone(String phone) {
         Phone = phone;
     }
 
-    public void setDivision(Division division){
+    /**
+     * Set division.
+     *
+     * @param division the division
+     */
+    public void setDivision(Division division) {
         Division = division;
     }
 

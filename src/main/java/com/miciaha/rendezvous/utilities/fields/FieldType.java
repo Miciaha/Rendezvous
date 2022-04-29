@@ -2,7 +2,7 @@ package com.miciaha.rendezvous.utilities.fields;
 
 /**
  * The enum Field type describes different types of fields tracked in a form.
- *
+ * <p>
  * FUTURE_ENHANCEMENT adding additional field types as necessary.
  */
 public enum FieldType {
@@ -18,5 +18,8 @@ public enum FieldType {
      * Double field type.
      */
     DOUBLE,
-    PASSWORD
+    /**
+     * Date time field type.
+     */
+    DATE_TIME
 }
