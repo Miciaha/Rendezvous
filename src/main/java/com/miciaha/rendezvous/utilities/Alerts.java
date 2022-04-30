@@ -23,11 +23,11 @@ public class Alerts {
             /**
              * The Alert type.
              */
-            protected Alert.AlertType alertType = Alert.AlertType.ERROR;
+            protected final Alert.AlertType alertType = Alert.AlertType.ERROR;
             /**
              * The Custom alert.
              */
-            protected Alert customAlert = new Alert(alertType);
+            protected final Alert customAlert = new Alert(alertType);
             /**
              * The Title.
              */
@@ -103,11 +103,11 @@ public class Alerts {
             /**
              * The Command.
              */
-            protected Command command;
+            protected final Command command;
             /**
              * The Command name.
              */
-            protected String commandName;
+            protected final String commandName;
 
             /**
              * Instantiates a new Confirmation alert.

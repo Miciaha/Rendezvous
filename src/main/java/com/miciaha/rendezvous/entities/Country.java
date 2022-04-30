@@ -6,8 +6,8 @@ import com.miciaha.rendezvous.interfaces.DBEntity;
  * The type Country.
  */
 public class Country implements DBEntity {
-    private int ID;
-    private String Name;
+    private int id;
+    private String name;
 
     /**
      * Instantiates a new Country.
@@ -16,12 +16,12 @@ public class Country implements DBEntity {
      * @param name the name
      */
     public Country(int id, String name) {
-        ID = id;
-        Name = name;
+        this.id = id;
+        this.name = name;
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
     /**
@@ -30,7 +30,7 @@ public class Country implements DBEntity {
      * @return the string
      */
     public String getName() {
-        return Name;
+        return name;
     }
 
     /**
@@ -38,8 +38,8 @@ public class Country implements DBEntity {
      *
      * @param id the id
      */
-    public void setID(int id) {
-        ID = id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     /**
@@ -48,6 +48,6 @@ public class Country implements DBEntity {
      * @param name the name
      */
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 }

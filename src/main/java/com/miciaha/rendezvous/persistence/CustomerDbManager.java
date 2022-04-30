@@ -17,11 +17,11 @@ public class CustomerDbManager implements DbManager<Customer> {
     @Override
     public boolean Create(Customer customer) {
 
-        int divisionID = customer.getDivision().getID();
+        int divisionID = customer.getDivision().getId();
 
         String query = "INSERT INTO CUSTOMERS (Customer_ID, Customer_Name, Address, Postal_Code, Phone," +
                 "Create_Date,Created_By,Last_Update,Last_Updated_By, Division_ID)" +
-                "VALUES (" + customer.getID() + ", '" + customer.getName() + "', '" + customer.getAddress() + "', '" + customer.getPostCode() +
+                "VALUES (" + customer.getId() + ", '" + customer.getName() + "', '" + customer.getAddress() + "', '" + customer.getPostCode() +
                 "', '" + customer.getPhone() + "', SYSUTCDATETIME(), '" + CurrentUser.getName() + "', SYSUTCDATETIME(), '" +
                 CurrentUser.getName() + "', " + divisionID + ")";
 
@@ -95,13 +95,13 @@ public class CustomerDbManager implements DbManager<Customer> {
     @Override
     public boolean Update(Customer customer) {
 
-        int divisionID = customer.getDivision().getID();
+        int divisionID = customer.getDivision().getId();
 
         String query = "UPDATE CUSTOMERS " +
                 "SET Customer_Name = '" + customer.getName() + "', Address = '" + customer.getAddress() + "'," +
                 " Postal_Code = '" + customer.getPostCode() + "', Phone = '" + customer.getPhone() + "'," +
                 " Last_Update = SYSUTCDATETIME(), Last_Updated_By = '" + CurrentUser.getName() + "', Division_ID = " + divisionID +
-                " WHERE Customer_ID = " + customer.getID();
+                " WHERE Customer_ID = " + customer.getId();
 
         try {
             return SQLDBConnection.updateDB(query);
@@ -114,7 +114,7 @@ public class CustomerDbManager implements DbManager<Customer> {
     @Override
     public boolean Delete(Customer customer) {
 
-        String query = "DELETE FROM CUSTOMERS Where Customer_ID = " + customer.getID();
+        String query = "DELETE FROM CUSTOMERS Where Customer_ID = " + customer.getId();
 
         try {
             SQLDBConnection.runQuery(query);

@@ -11,16 +11,16 @@ import java.time.LocalDateTime;
  * The type Appointment.
  */
 public class Appointment implements DBEntity {
-    private int ID;
-    private String Title;
-    private String Description;
-    private String Location;
-    private String Type;
-    private LocalDateTime Start;
-    private LocalDateTime End;
-    private User User;
-    private Customer Customer;
-    private Contact Contact;
+    private int id;
+    private String title;
+    private String description;
+    private String location;
+    private String type;
+    private LocalDateTime start;
+    private LocalDateTime end;
+    private final User user;
+    private Customer customer;
+    private Contact contact;
 
     /**
      * Instantiates a new Appointment.
@@ -39,16 +39,16 @@ public class Appointment implements DBEntity {
     public Appointment(int id, String title, String description, String location, String type,
                        LocalDateTime start, LocalDateTime end, int userID, int customerID, int contactID) {
 
-        ID = id;
-        Title = title;
-        Description = description;
-        Location = location;
-        Type = type;
-        Start = start;
-        End = end;
-        User = UserDbManager.getUser(userID);
-        Customer = CustomerDbManager.getCustomer(customerID);
-        Contact = ContactDbManager.getContact(contactID);
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.location = location;
+        this.type = type;
+        this.start = start;
+        this.end = end;
+        user = UserDbManager.getUser(userID);
+        customer = CustomerDbManager.getCustomer(customerID);
+        contact = ContactDbManager.getContact(contactID);
     }
 
     /**
@@ -67,19 +67,19 @@ public class Appointment implements DBEntity {
     public Appointment(String title, String description, String location, String type,
                        LocalDateTime start, LocalDateTime end, int userID, int customerID, int contactID) {
 
-        Title = title;
-        Description = description;
-        Location = location;
-        Type = type;
-        Start = start;
-        End = end;
-        User = UserDbManager.getUser(userID);
-        Customer = CustomerDbManager.getCustomer(customerID);
-        Contact = ContactDbManager.getContact(contactID);
+        this.title = title;
+        this.description = description;
+        this.location = location;
+        this.type = type;
+        this.start = start;
+        this.end = end;
+        user = UserDbManager.getUser(userID);
+        customer = CustomerDbManager.getCustomer(customerID);
+        contact = ContactDbManager.getContact(contactID);
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
     /**
@@ -88,7 +88,7 @@ public class Appointment implements DBEntity {
      * @return the string
      */
     public String getTitle() {
-        return Title;
+        return title;
     }
 
     /**
@@ -97,7 +97,7 @@ public class Appointment implements DBEntity {
      * @return the string
      */
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     /**
@@ -106,7 +106,7 @@ public class Appointment implements DBEntity {
      * @return the string
      */
     public String getLocation() {
-        return Location;
+        return location;
     }
 
     /**
@@ -115,7 +115,7 @@ public class Appointment implements DBEntity {
      * @return the string
      */
     public String getType() {
-        return Type;
+        return type;
     }
 
     /**
@@ -124,7 +124,7 @@ public class Appointment implements DBEntity {
      * @return the local date time
      */
     public LocalDateTime getStart() {
-        return Start;
+        return start;
     }
 
     /**
@@ -133,34 +133,34 @@ public class Appointment implements DBEntity {
      * @return the local date time
      */
     public LocalDateTime getEnd() {
-        return End;
+        return end;
     }
 
     /**
-     * Get user user.
+     * Get user.
      *
      * @return the user
      */
     public User getUser() {
-        return User;
+        return user;
     }
 
     /**
-     * Get customer customer.
+     * Get customer.
      *
      * @return the customer
      */
     public Customer getCustomer() {
-        return Customer;
+        return customer;
     }
 
     /**
-     * Get contact contact.
+     * Get contact.
      *
      * @return the contact
      */
     public Contact getContact() {
-        return Contact;
+        return contact;
     }
 
     /**
@@ -168,8 +168,8 @@ public class Appointment implements DBEntity {
      *
      * @param id the id
      */
-    public void setID(int id) {
-        ID = id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     /**
@@ -178,7 +178,7 @@ public class Appointment implements DBEntity {
      * @param title the title
      */
     public void setTitle(String title) {
-        Title = title;
+        this.title = title;
     }
 
     /**
@@ -187,7 +187,7 @@ public class Appointment implements DBEntity {
      * @param description the description
      */
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
 
     /**
@@ -196,7 +196,7 @@ public class Appointment implements DBEntity {
      * @param location the location
      */
     public void setLocation(String location) {
-        Location = location;
+        this.location = location;
     }
 
     /**
@@ -205,7 +205,7 @@ public class Appointment implements DBEntity {
      * @param type the type
      */
     public void setType(String type) {
-        Type = type;
+        this.type = type;
     }
 
     /**
@@ -214,7 +214,7 @@ public class Appointment implements DBEntity {
      * @param startDate the start date
      */
     public void setStart(LocalDateTime startDate) {
-        Start = startDate;
+        start = startDate;
     }
 
     /**
@@ -223,16 +223,7 @@ public class Appointment implements DBEntity {
      * @param endDate the end date
      */
     public void setEnd(LocalDateTime endDate) {
-        End = endDate;
-    }
-
-    /**
-     * Set user.
-     *
-     * @param user the user
-     */
-    public void setUser(User user) {
-        User = user;
+        end = endDate;
     }
 
     /**
@@ -241,7 +232,7 @@ public class Appointment implements DBEntity {
      * @param customer the customer
      */
     public void setCustomer(Customer customer) {
-        Customer = customer;
+        this.customer = customer;
     }
 
     /**
@@ -250,7 +241,7 @@ public class Appointment implements DBEntity {
      * @param contact the contact
      */
     public void setContact(Contact contact) {
-        Contact = contact;
+        this.contact = contact;
     }
 
 

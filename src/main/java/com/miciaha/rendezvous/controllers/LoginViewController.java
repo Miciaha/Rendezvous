@@ -110,15 +110,11 @@ public class LoginViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            setLocale();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        setLocale();
         setFields();
     }
 
-    private void setLocale() throws IOException {
+    private void setLocale() {
         LocaleHandler.setText(welcomeText.textProperty(), "greeting");
         LocaleHandler.setText(blurbText.textProperty(), "greeting_sub");
         LocaleHandler.setText(passwordText.textProperty(), "password");

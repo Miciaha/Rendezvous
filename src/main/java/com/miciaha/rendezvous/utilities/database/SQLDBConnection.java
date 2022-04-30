@@ -1,9 +1,10 @@
 package com.miciaha.rendezvous.utilities.database;
 
 import java.sql.*;
+import java.util.Objects;
 
 /**
- * The type Sqldb connection.
+ * The type SqlDatabase connection.
  */
 public class SQLDBConnection {
     private static final String DB_URL = "jdbc:sqlserver://localhost:1433;databaseName=rendezvous;user=sa;password=Pa$$w0rd;Encrypt=False";
@@ -70,7 +71,7 @@ public class SQLDBConnection {
             int maxID = 0;
             try {
                 ResultSet rs = SQLDBConnection.runQuery(query);
-                maxID = rs.getInt("num");
+                maxID = Objects.requireNonNull(rs).getInt("num");
             } catch (Exception e) {
                 e.printStackTrace();
             }

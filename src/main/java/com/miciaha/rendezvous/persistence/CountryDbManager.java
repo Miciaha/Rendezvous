@@ -39,7 +39,7 @@ public class CountryDbManager {
     }
 
     /**
-     * Get country country.
+     * Get country.
      *
      * @param country the country
      * @return the country
@@ -63,7 +63,7 @@ public class CountryDbManager {
     }
 
     /**
-     * Get country country.
+     * Get country.
      *
      * @param countryID the country id
      * @return the country

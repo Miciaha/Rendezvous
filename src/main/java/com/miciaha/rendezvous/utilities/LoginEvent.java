@@ -133,7 +133,7 @@ public class LoginEvent implements Serializable {
      */
     public static ObservableList<LoginEvent> getLoginEvents() {
         ObservableList<LoginEvent> events = FXCollections.observableArrayList();
-        LoginEvent loginEvent = null;
+        LoginEvent loginEvent;
         try (FileInputStream fis = new FileInputStream("login_activity.txt")) {
             boolean cont = true;
             while (cont) {

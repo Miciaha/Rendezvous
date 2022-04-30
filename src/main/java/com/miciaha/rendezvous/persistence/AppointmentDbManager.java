@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * The type Appointment db manager.
@@ -23,14 +24,14 @@ public class AppointmentDbManager implements DbManager<Appointment> {
     public boolean Create(Appointment app) {
 
         int newID = getMaxId() + 1;
-        int customerID = app.getCustomer().getID();
-        int contactID = app.getContact().getID();
+        int customerID = app.getCustomer().getId();
+        int contactID = app.getContact().getId();
         Timestamp utcStart = LocaleHandler.DateTimeHelper.localDateToTimestampUTC(app.getStart());
         Timestamp utcEnd = LocaleHandler.DateTimeHelper.localDateToTimestampUTC(app.getEnd());
 
         String query = "INSERT INTO APPOINTMENTS ([Appointment_ID] ,[Title] ,[Description], [Location] , [Type], [Start]," +
                 " [End],[Create_Date], [Created_By] , [Last_Update], [Last_Updated_By], [Customer_ID], [User_ID],[Contact_ID])" +
-                "VALUES (" + newID + ", '" + app.getTitle() + "', '" + app.getDescription() + "', '" + app.getType() + "', '" + app.getLocation() +
+                "VALUES (" + newID + ", '" + app.getTitle() + "', '" + app.getDescription() + "', '" + app.getLocation() + "', '" + app.getType() +
                 "', '" + utcStart + "', '" + utcEnd + "', SYSUTCDATETIME(), '" + CurrentUser.getName() + "', SYSUTCDATETIME(), '" +
                 CurrentUser.getName() + "', " + customerID + ", " + CurrentUser.getID() + ", " + contactID + " )";
 
@@ -45,17 +46,17 @@ public class AppointmentDbManager implements DbManager<Appointment> {
     @Override
     public boolean Update(Appointment app) {
 
-        int customerID = app.getCustomer().getID();
-        int contactID = app.getContact().getID();
+        int customerID = app.getCustomer().getId();
+        int contactID = app.getContact().getId();
         Timestamp utcStart = LocaleHandler.DateTimeHelper.localDateToTimestampUTC(app.getStart());
         Timestamp utcEnd = LocaleHandler.DateTimeHelper.localDateToTimestampUTC(app.getEnd());
 
         String query = "UPDATE APPOINTMENTS " +
-                "SET [Title] = '" + app.getTitle() + "', [Description] = '" + app.getDescription() + "', [Type] = '" + app.getType() +
-                "', [Start] = '" + utcStart + "', [End] = '" + utcEnd + "', [Last_Update] = SYSUTCDATETIME(), " +
+                "SET [Title] = '" + app.getTitle() + "', [Description] = '" + app.getDescription() + "', [Location] = '" + app.getLocation() + "', " +
+                "[Type] = '" + app.getType() + "', [Start] = '" + utcStart + "', [End] = '" + utcEnd + "', [Last_Update] = SYSUTCDATETIME(), " +
                 " [Last_Updated_By] = '" + CurrentUser.getName() + "', [Customer_ID] = " + customerID + ", [User_ID] = " + CurrentUser.getID() +
                 ", [Contact_ID] = " + contactID +
-                "WHERE [Appointment_ID] = " + app.getID();
+                "WHERE [Appointment_ID] = " + app.getId();
 
         try {
             return SQLDBConnection.updateDB(query);
@@ -73,7 +74,7 @@ public class AppointmentDbManager implements DbManager<Appointment> {
      */
     public ArrayList<Appointment> getCustomerAppointments(Customer customer) {
         ArrayList<Appointment> appointments = new ArrayList<>();
-        String statement = "SELECT * FROM APPOINTMENTS WHERE Customer_ID = " + customer.getID();
+        String statement = "SELECT * FROM APPOINTMENTS WHERE Customer_ID = " + customer.getId();
 
         if (getAppointmentQuery(statement, appointments)) {
             return appointments;
@@ -155,7 +156,7 @@ public class AppointmentDbManager implements DbManager<Appointment> {
 
     @Override
     public boolean Delete(Appointment app) {
-        String statement = "DELETE FROM APPOINTMENTS Where Appointment_ID = " + app.getID();
+        String statement = "DELETE FROM APPOINTMENTS Where Appointment_ID = " + app.getId();
         return deleteAppointmentStatement(statement);
     }
 
@@ -166,7 +167,7 @@ public class AppointmentDbManager implements DbManager<Appointment> {
      * @return the boolean
      */
     public boolean Delete(Customer customer) {
-        String statement = "DELETE FROM APPOINTMENTS Where Customer_ID = " + customer.getID();
+        String statement = "DELETE FROM APPOINTMENTS Where Customer_ID = " + customer.getId();
         return deleteAppointmentStatement(statement);
     }
 
@@ -175,7 +176,7 @@ public class AppointmentDbManager implements DbManager<Appointment> {
         int maxID = 0;
         try {
             ResultSet rs = SQLDBConnection.runQuery(query);
-            maxID = rs.getInt("num");
+            maxID = Objects.requireNonNull(rs).getInt("num");
         } catch (Exception e) {
             e.printStackTrace();
         }

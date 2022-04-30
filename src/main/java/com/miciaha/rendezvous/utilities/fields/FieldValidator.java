@@ -100,11 +100,11 @@ public class FieldValidator {
         /**
          * The Field.
          */
-        protected TextField field;
+        protected final TextField field;
         /**
          * The Error label.
          */
-        protected Label errorLabel;
+        protected final Label errorLabel;
         /**
          * The Text.
          */
@@ -112,7 +112,7 @@ public class FieldValidator {
         /**
          * The Error text.
          */
-        protected String errorText;
+        protected final String errorText;
         /**
          * The Is valid.
          */

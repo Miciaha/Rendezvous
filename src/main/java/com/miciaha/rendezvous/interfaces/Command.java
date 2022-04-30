@@ -7,7 +7,6 @@ public interface Command {
     /**
      * Execute boolean.
      *
-     * @return the boolean
      */
-    boolean execute();
+    void execute();
 }

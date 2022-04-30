@@ -7,12 +7,12 @@ import com.miciaha.rendezvous.persistence.DivisionDbManager;
  * The type Customer.
  */
 public class Customer implements DBEntity {
-    private int ID;
-    private String Name;
-    private String Address;
-    private String PostCode;
-    private String Phone;
-    private Division Division;
+    private int id;
+    private String name;
+    private String address;
+    private String postCode;
+    private String phone;
+    private Division division;
 
     /**
      * Instantiates a new Customer.
@@ -32,12 +32,12 @@ public class Customer implements DBEntity {
      * @param divisionID the division id
      */
     public Customer(int id, String name, String address, String postCode, String phone, int divisionID) {
-        ID = id;
-        Name = name;
-        Address = address;
-        PostCode = postCode;
-        Phone = phone;
-        Division = DivisionDbManager.getDivision(divisionID);
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.postCode = postCode;
+        this.phone = phone;
+        division = DivisionDbManager.getDivision(divisionID);
     }
 
     /**
@@ -50,15 +50,15 @@ public class Customer implements DBEntity {
      * @param division the division
      */
     public Customer(String name, String address, String postCode, String phone, Division division) {
-        Name = name;
-        Address = address;
-        PostCode = postCode;
-        Phone = phone;
-        Division = division;
+        this.name = name;
+        this.address = address;
+        this.postCode = postCode;
+        this.phone = phone;
+        this.division = division;
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
     /**
@@ -67,7 +67,7 @@ public class Customer implements DBEntity {
      * @return the string
      */
     public String getName() {
-        return Name;
+        return name;
     }
 
     /**
@@ -76,7 +76,7 @@ public class Customer implements DBEntity {
      * @return the string
      */
     public String getAddress() {
-        return Address;
+        return address;
     }
 
     /**
@@ -85,7 +85,7 @@ public class Customer implements DBEntity {
      * @return the string
      */
     public String getPostCode() {
-        return PostCode;
+        return postCode;
     }
 
     /**
@@ -94,7 +94,7 @@ public class Customer implements DBEntity {
      * @return the string
      */
     public String getPhone() {
-        return Phone;
+        return phone;
     }
 
     /**
@@ -103,7 +103,7 @@ public class Customer implements DBEntity {
      * @return the division
      */
     public Division getDivision() {
-        return Division;
+        return division;
     }
 
     /**
@@ -111,8 +111,8 @@ public class Customer implements DBEntity {
      *
      * @param id the id
      */
-    public void setID(int id) {
-        ID = id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     /**
@@ -121,7 +121,7 @@ public class Customer implements DBEntity {
      * @param name the name
      */
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     /**
@@ -130,7 +130,7 @@ public class Customer implements DBEntity {
      * @param address the address
      */
     public void setAddress(String address) {
-        Address = address;
+        this.address = address;
     }
 
     /**
@@ -139,7 +139,7 @@ public class Customer implements DBEntity {
      * @param code the code
      */
     public void setPostCode(String code) {
-        PostCode = code;
+        postCode = code;
     }
 
     /**
@@ -148,7 +148,7 @@ public class Customer implements DBEntity {
      * @param phone the phone
      */
     public void setPhone(String phone) {
-        Phone = phone;
+        this.phone = phone;
     }
 
     /**
@@ -157,7 +157,7 @@ public class Customer implements DBEntity {
      * @param division the division
      */
     public void setDivision(Division division) {
-        Division = division;
+        this.division = division;
     }
 
 }

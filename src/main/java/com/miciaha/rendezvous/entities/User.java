@@ -6,8 +6,8 @@ import com.miciaha.rendezvous.interfaces.DBEntity;
  * The type User.
  */
 public class User implements DBEntity {
-    private final int ID;
-    private final String Username;
+    private final int id;
+    private final String username;
 
     /**
      * Instantiates a new User.
@@ -16,12 +16,12 @@ public class User implements DBEntity {
      * @param name the name
      */
     public User(int id, String name) {
-        ID = id;
-        Username = name;
+        this.id = id;
+        username = name;
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
     /**
@@ -30,7 +30,7 @@ public class User implements DBEntity {
      * @return the string
      */
     public String getUsername() {
-        return Username;
+        return username;
     }
 
 }

@@ -1,8 +1,8 @@
 package com.miciaha.rendezvous.utilities;
 
-import com.miciaha.rendezvous.controllers.ReportViewController;
 import com.miciaha.rendezvous.entities.Appointment;
 import com.miciaha.rendezvous.entities.Customer;
+import com.miciaha.rendezvous.entities.reports.CustomerAppointment;
 import com.miciaha.rendezvous.utilities.location.LocaleHandler;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.TableColumn;
@@ -24,8 +24,8 @@ public class TableManager {
      * @param appType  the app type
      * @param appMonth the app month
      */
-    public static void LinkCustomerAppointmentReportColumns(TableColumn<ReportViewController.CustomerAppointment, String> appCount, TableColumn<ReportViewController.CustomerAppointment, String> appType,
-                                                            TableColumn<ReportViewController.CustomerAppointment, String> appMonth) {
+    public static void LinkCustomerAppointmentReportColumns(TableColumn<CustomerAppointment, String> appCount, TableColumn<CustomerAppointment, String> appType,
+                                                            TableColumn<CustomerAppointment, String> appMonth) {
         appCount.setCellValueFactory(x -> new SimpleStringProperty(String.valueOf(x.getValue().getCount())));
         appMonth.setCellValueFactory(x -> new SimpleStringProperty(x.getValue().getMonth()));
         appType.setCellValueFactory(x -> new SimpleStringProperty(x.getValue().getType()));
@@ -82,10 +82,10 @@ public class TableManager {
     public static void LinkContactReportColumns(TableColumn<Appointment, String> contactName, TableColumn<Appointment, Integer> id, TableColumn<Appointment, String> title,
                                                 TableColumn<Appointment, String> type, TableColumn<Appointment, String> description, TableColumn<Appointment, String> startTime,
                                                 TableColumn<Appointment, String> endTime, TableColumn<Appointment, String> customerID) {
-        id.setCellValueFactory(new PropertyValueFactory<>("ID"));
-        title.setCellValueFactory(new PropertyValueFactory<>("Title"));
-        description.setCellValueFactory(new PropertyValueFactory<>("Description"));
-        type.setCellValueFactory(new PropertyValueFactory<>("Type"));
+        id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        title.setCellValueFactory(new PropertyValueFactory<>("title"));
+        description.setCellValueFactory(new PropertyValueFactory<>("description"));
+        type.setCellValueFactory(new PropertyValueFactory<>("type"));
 
         contactName.setCellValueFactory(appointment -> {
             String contact = appointment.getValue().getContact().getName();
@@ -98,12 +98,12 @@ public class TableManager {
         });
 
         endTime.setCellValueFactory(appointment -> {
-            LocalDateTime end = appointment.getValue().getStart();
+            LocalDateTime end = appointment.getValue().getEnd();
             return new SimpleStringProperty(LocaleHandler.DateTimeHelper.formatDateTime(end));
         });
 
         customerID.setCellValueFactory(appointment -> {
-            int customer = appointment.getValue().getCustomer().getID();
+            int customer = appointment.getValue().getCustomer().getId();
             return new SimpleStringProperty(String.valueOf(customer));
 
         });
@@ -114,7 +114,7 @@ public class TableManager {
      *
      * @param id          the id
      * @param userID      the user id
-     * @param custID      the cust id
+     * @param custID      the customer id
      * @param title       the title
      * @param description the description
      * @param location    the location
@@ -129,11 +129,11 @@ public class TableManager {
                                               TableColumn<Appointment, String> title, TableColumn<Appointment, String> description, TableColumn<Appointment, String> location,
                                               TableColumn<Appointment, String> type, TableColumn<Appointment, String> contact, TableColumn<Appointment, String> start,
                                               TableColumn<Appointment, String> end, TableColumn<Appointment, String> date, TableColumn<Appointment, String> monthWeek) {
-        id.setCellValueFactory(new PropertyValueFactory<>("ID"));
-        title.setCellValueFactory(new PropertyValueFactory<>("Title"));
-        description.setCellValueFactory(new PropertyValueFactory<>("Description"));
-        location.setCellValueFactory(new PropertyValueFactory<>("Location"));
-        type.setCellValueFactory(new PropertyValueFactory<>("Type"));
+        id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        title.setCellValueFactory(new PropertyValueFactory<>("title"));
+        description.setCellValueFactory(new PropertyValueFactory<>("description"));
+        location.setCellValueFactory(new PropertyValueFactory<>("location"));
+        type.setCellValueFactory(new PropertyValueFactory<>("type"));
 
         date.setCellValueFactory(appointment -> {
             String appointmentDate = LocaleHandler.DateTimeHelper.formatDate(appointment.getValue().getStart());
@@ -156,12 +156,12 @@ public class TableManager {
         });
 
         userID.setCellValueFactory(appointment -> {
-            int appointmentUserId = appointment.getValue().getUser().getID();
+            int appointmentUserId = appointment.getValue().getUser().getId();
             return new SimpleStringProperty(String.valueOf(appointmentUserId));
         });
 
         custID.setCellValueFactory(appointment -> {
-            int customerID = appointment.getValue().getCustomer().getID();
+            int customerID = appointment.getValue().getCustomer().getId();
             return new SimpleStringProperty(String.valueOf(customerID));
         });
 
@@ -182,8 +182,8 @@ public class TableManager {
      */
     public static void LinkCustomerColumns(TableColumn<Customer, Integer> id, TableColumn<Customer, String> name, TableColumn<Customer, String> address,
                                            TableColumn<Customer, String> postCode, TableColumn<Customer, String> phone) {
-        id.setCellValueFactory(new PropertyValueFactory<>("ID"));
-        name.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        name.setCellValueFactory(new PropertyValueFactory<>("name"));
         address.setCellValueFactory(customer -> {
 
             String countryName = customer.getValue().getDivision().getCountry().getName();
@@ -196,7 +196,7 @@ public class TableManager {
                 return new SimpleStringProperty(cAddress);
             }
         });
-        postCode.setCellValueFactory(new PropertyValueFactory<>("PostCode"));
-        phone.setCellValueFactory(new PropertyValueFactory<>("Phone"));
+        postCode.setCellValueFactory(new PropertyValueFactory<>("postCode"));
+        phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
     }
 }

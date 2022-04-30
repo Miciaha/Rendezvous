@@ -16,7 +16,7 @@ public class CustomerData {
     /**
      * The Customer list.
      */
-    public static ObservableList<Customer> customerList = dbManager.getAllCustomers();
+    public static final ObservableList<Customer> customerList = dbManager.getAllCustomers();
 
     /**
      * Add customer boolean.
@@ -27,7 +27,7 @@ public class CustomerData {
     public static boolean addCustomer(Customer customer) {
         int id = SQLDBConnection.getMaxId("Customer");
 
-        customer.setID(id);
+        customer.setId(id);
         if (dbManager.Create(customer)) {
             return customerList.add(customer);
         }
@@ -38,15 +38,13 @@ public class CustomerData {
      * Remove customer boolean.
      *
      * @param customer the customer
-     * @return the boolean
      */
-    public static boolean removeCustomer(Customer customer) {
+    public static void removeCustomer(Customer customer) {
         // remove appointments first!
         AppointmentData.removeCustomerAppointment(customer);
         if (dbManager.Delete(customer)) {
-            return customerList.remove(customer);
+            customerList.remove(customer);
         }
-        return false;
     }
 
     /**
@@ -58,7 +56,7 @@ public class CustomerData {
     public static boolean updateCustomer(Customer customer) {
         if (dbManager.Update(customer)) {
             for (Customer x : customerList) {
-                if (x.getID() == customer.getID()) {
+                if (x.getId() == customer.getId()) {
                     int index = customerList.indexOf(x);
                     customerList.set(index, customer);
                     return true;
@@ -77,7 +75,7 @@ public class CustomerData {
     public static int getCustomerID(String name) {
         for (Customer customer : customerList) {
             if (Objects.equals(customer.getName(), name)) {
-                return customer.getID();
+                return customer.getId();
             }
         }
         return 0;

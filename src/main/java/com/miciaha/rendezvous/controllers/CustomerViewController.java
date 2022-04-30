@@ -37,7 +37,7 @@ public class CustomerViewController implements Initializable, FormEditor<Custome
     protected Customer formCustomer;
 
     /**
-     * The Id tf.
+     * The Id TextField.
      */
     @FXML
     public TextField idTF;
@@ -156,7 +156,7 @@ public class CustomerViewController implements Initializable, FormEditor<Custome
         String division = customer.getDivision().getName();
         String[] splitAddress = customer.getAddress().split(",");
 
-        idTF.textProperty().setValue(String.valueOf(customer.getID()));
+        idTF.textProperty().setValue(String.valueOf(customer.getId()));
         nameTF.textProperty().setValue(customer.getName());
         addressTF.textProperty().setValue(splitAddress[0]);
         cityTF.textProperty().setValue(splitAddress[1]);
@@ -227,7 +227,7 @@ public class CustomerViewController implements Initializable, FormEditor<Custome
             Country country = CountryDbManager.getCountry(selectedCountry);
 
             if (country != null) {
-                DivisionCmb.setItems(DivisionDbManager.getCountryDivisionsList(country.getID()));
+                DivisionCmb.setItems(DivisionDbManager.getCountryDivisionsList(country.getId()));
             }
         }
     }

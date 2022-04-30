@@ -55,12 +55,10 @@
         <Button fx:id="cancelButton" layoutX="187.0" layoutY="480.0" mnemonicParsing="false" styleClass="btnCancel" text="Cancel" />
       <TextField fx:id="idTF" disable="true" editable="false" layoutX="146.0" layoutY="64.0" prefHeight="25.0" prefWidth="47.0" />
       <Text fill="#c3c3c3" layoutX="122.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
-      <Group layoutX="28.0" layoutY="235.0">
-         <children>
-            <TextField fx:id="cityTF" layoutY="7.0" prefHeight="25.0" prefWidth="117.0" />
-            <Text layoutX="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City" />
-            <Label fx:id="cityErrorLabel" layoutX="1.0" layoutY="29.0" styleClass="error-label" text="Label" />
-         </children>
-      </Group>
+        <Group layoutX="28.0" layoutY="235.0">
+            <TextField fx:id="cityTF" layoutY="7.0" prefHeight="25.0" prefWidth="117.0"/>
+            <Text layoutX="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City"/>
+            <Label fx:id="cityErrorLabel" layoutX="1.0" layoutY="29.0" styleClass="error-label" text="Label"/>
+        </Group>
     </AnchorPane>
 </VBox>

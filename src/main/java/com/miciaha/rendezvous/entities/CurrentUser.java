@@ -21,7 +21,7 @@ public class CurrentUser {
      * @return the id
      */
     public static int getID() {
-        return currentUser.getID();
+        return currentUser.getId();
     }
 
     /**

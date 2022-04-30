@@ -6,9 +6,9 @@ import com.miciaha.rendezvous.interfaces.DBEntity;
  * The type Contact.
  */
 public class Contact implements DBEntity {
-    private int ID;
-    private String Name;
-    private String Email;
+    private final int id;
+    private final String name;
+    private final String email;
 
     /**
      * Instantiates a new Contact.
@@ -18,13 +18,13 @@ public class Contact implements DBEntity {
      * @param email the email
      */
     public Contact(int id, String name, String email) {
-        ID = id;
-        Name = name;
-        Email = email;
+        this.id = id;
+        this.name = name;
+        this.email = email;
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
     /**
@@ -33,42 +33,7 @@ public class Contact implements DBEntity {
      * @return the name
      */
     public String getName() {
-        return Name;
+        return name;
     }
 
-    /**
-     * Gets email.
-     *
-     * @return the email
-     */
-    public String getEmail() {
-        return Email;
-    }
-
-    /**
-     * Set id.
-     *
-     * @param id the id
-     */
-    public void setID(int id) {
-        ID = id;
-    }
-
-    /**
-     * Set name.
-     *
-     * @param name the name
-     */
-    public void setName(String name) {
-        Name = name;
-    }
-
-    /**
-     * Set email.
-     *
-     * @param email the email
-     */
-    public void setEmail(String email) {
-        Email = email;
-    }
 }

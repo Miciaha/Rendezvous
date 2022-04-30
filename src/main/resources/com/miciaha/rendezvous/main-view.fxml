@@ -13,91 +13,93 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="900.0" prefWidth="1265.0" stylesheets="@assets/main.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.miciaha.rendezvous.controllers.MainViewController">
-  <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="612.0" prefWidth="1070.0" VBox.vgrow="ALWAYS">
-         <children>
-            <Group fx:id="upcomingAptGroup" layoutX="368.0" layoutY="41.0" visible="false">
-               <children>
-                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="39.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="530.0" />
-                  <Label fx:id="upcomingAptLabel" layoutX="153.0" layoutY="11.0" text="[Date]: Appointment [ID] starting at [Time]" textFill="WHITE" />
-               </children>
+<VBox prefHeight="900.0" prefWidth="1265.0" stylesheets="@assets/main.css" xmlns="http://javafx.com/javafx/18"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.miciaha.rendezvous.controllers.MainViewController">
+    <AnchorPane prefHeight="612.0" prefWidth="1070.0" VBox.vgrow="ALWAYS">
+        <Group fx:id="upcomingAptGroup" layoutX="368.0" layoutY="41.0" visible="false">
+            <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="39.0" stroke="BLACK"
+                       strokeType="INSIDE" strokeWidth="0.0" width="530.0"/>
+            <Label fx:id="upcomingAptLabel" layoutX="153.0" layoutY="11.0"
+                   text="[Date]: Appointment [ID] starting at [Time]" textFill="WHITE"/>
+        </Group>
+        <Group fx:id="noAptGroup" layoutX="368.0" layoutY="41.0">
+            <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#bfbfbf" height="39.0" stroke="BLACK"
+                       strokeType="INSIDE" strokeWidth="0.0" width="530.0"/>
+            <Label layoutX="190.0" layoutY="11.0" text="No upcoming appointments" textFill="WHITE"/>
+        </Group>
+        <Group layoutX="125.0" layoutY="498.0">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="348.0" layoutX="-91.0" layoutY="-21.0"
+                       stroke="DODGERBLUE" strokeType="INSIDE" width="1198.0"/>
+            <TableView fx:id="aptTable" layoutX="-78.0" layoutY="67.0" prefHeight="200.0" prefWidth="1168.0">
+                <columns>
+                    <TableColumn fx:id="appIdCol" prefWidth="75.0" text="ID"/>
+                    <TableColumn fx:id="appMonthWeekCol" prefWidth="94.0" text="Month"/>
+                    <TableColumn fx:id="appTitleCol" prefWidth="83.0" text="Title"/>
+                    <TableColumn fx:id="appDescriptionCol" prefWidth="131.0" text="Description"/>
+                    <TableColumn fx:id="appLocCol" prefWidth="128.0" text="Location"/>
+                    <TableColumn fx:id="appConCol" prefWidth="130.0" text="Contact"/>
+                    <TableColumn fx:id="appTypeCol" minWidth="7.0" prefWidth="125.0" text="Type"/>
+                    <TableColumn fx:id="appDateCol" minWidth="7.0" prefWidth="95.0" text="Date"/>
+                    <TableColumn fx:id="appStartCol" minWidth="0.0" prefWidth="81.0" text="Start"/>
+                    <TableColumn fx:id="appEndCol" prefWidth="79.0" text="End"/>
+                    <TableColumn fx:id="appCustomerIdCol" prefWidth="90.0" text="Customer ID"/>
+                    <TableColumn fx:id="appUserIdCol" prefWidth="56.0" text="User ID"/>
+                </columns>
+            </TableView>
+            <Label layoutX="427.0" layoutY="10.0" text="All Appointments" textFill="#979797">
+                <font>
+                    <Font size="18.0"/>
+                </font>
+            </Label>
+            <Group layoutX="758.0" layoutY="-3.0">
+                <Group layoutY="-4.0">
+                    <Rectangle fill="DODGERBLUE" height="26.0" stroke="BLACK" strokeType="INSIDE"
+                               strokeWidth="0.0" width="151.0"/>
+                    <Rectangle fill="#f5f5f5" height="36.0" layoutY="26.0" stroke="BLACK" strokeType="INSIDE"
+                               strokeWidth="0.0" width="151.0"/>
+                    <Text fill="WHITE" layoutX="16.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                          text="View appointments by"/>
+                </Group>
+                <RadioButton fx:id="weekRadio" layoutX="90.0" layoutY="32.0" mnemonicParsing="false" text="Week">
+                    <toggleGroup>
+                        <ToggleGroup fx:id="appointView"/>
+                    </toggleGroup>
+                </RadioButton>
+                <RadioButton fx:id="monthRadio" layoutX="10.0" layoutY="32.0" mnemonicParsing="false"
+                             selected="true" text="Month" toggleGroup="$appointView"/>
             </Group>
-            <Group fx:id="noAptGroup" layoutX="368.0" layoutY="41.0">
-               <children>
-                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#bfbfbf" height="39.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="530.0" />
-                  <Label layoutX="190.0" layoutY="11.0" text="No upcoming appointments" textFill="WHITE" />
-               </children>
-            </Group>
-            <Group layoutX="125.0" layoutY="498.0">
-               <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="348.0" layoutX="-91.0" layoutY="-21.0" stroke="DODGERBLUE" strokeType="INSIDE" width="1198.0" />
-                  <TableView fx:id="aptTable" layoutX="-78.0" layoutY="67.0" prefHeight="200.0" prefWidth="1168.0">
-                    <columns>
-                      <TableColumn fx:id="appIdCol" prefWidth="75.0" text="ID" />
-                        <TableColumn fx:id="appMonthWeekCol" prefWidth="94.0" text="Month" />
-                      <TableColumn fx:id="appTitleCol" prefWidth="83.0" text="Title" />
-                        <TableColumn fx:id="appDescriptionCol" prefWidth="131.0" text="Description" />
-                        <TableColumn fx:id="appLocCol" prefWidth="128.0" text="Location" />
-                        <TableColumn fx:id="appConCol" prefWidth="130.0" text="Contact" />
-                        <TableColumn fx:id="appTypeCol" minWidth="7.0" prefWidth="125.0" text="Type" />
-                        <TableColumn fx:id="appDateCol" minWidth="7.0" prefWidth="95.0" text="Date" />
-                        <TableColumn fx:id="appStartCol" minWidth="0.0" prefWidth="81.0" text="Start" />
-                        <TableColumn fx:id="appEndCol" prefWidth="79.0" text="End" />
-                        <TableColumn fx:id="appCustomerIdCol" prefWidth="90.0" text="Customer ID" />
-                        <TableColumn fx:id="appUserIdCol" prefWidth="56.0" text="User ID" />
-                    </columns>
-                  </TableView>
-                  <Label layoutX="427.0" layoutY="10.0" text="All Appointments" textFill="#979797">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Group layoutX="758.0" layoutY="-3.0">
-                     <children>
-                        <Group layoutY="-4.0">
-                           <children>
-                              <Rectangle fill="DODGERBLUE" height="26.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="151.0" />
-                              <Rectangle fill="#f5f5f5" height="36.0" layoutY="26.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="151.0" />
-                              <Text fill="WHITE" layoutX="16.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="View appointments by" />
-                           </children>
-                        </Group>
-                        <RadioButton fx:id="weekRadio" layoutX="90.0" layoutY="32.0" mnemonicParsing="false" text="Week">
-                           <toggleGroup>
-                              <ToggleGroup fx:id="appointView" />
-                           </toggleGroup></RadioButton>
-                        <RadioButton fx:id="monthRadio" layoutX="10.0" layoutY="32.0" mnemonicParsing="false" selected="true" text="Month" toggleGroup="$appointView" />
-                     </children>
-                  </Group>
-                  <Button fx:id="addAppBtn" layoutY="280.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" styleClass="btnCreate" text="Add" />
-                  <Button fx:id="editAppBtn" layoutX="88.0" layoutY="280.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" styleClass="btnModify" text="Edit" />
-                  <Button fx:id="cancelAptBtn" layoutX="890.0" layoutY="280.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" styleClass="btnDelete" text="Cancel" />
-               </children>
-            </Group>
-            <Group layoutX="126.0" layoutY="64.0">
-               <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="312.0" layoutX="96.0" layoutY="46.0" stroke="DODGERBLUE" strokeType="INSIDE" width="804.0" />
-                  <TableView fx:id="customerTable" layoutX="131.0" layoutY="102.0" prefHeight="200.0" prefWidth="735.0">
-                    <columns>
-                      <TableColumn fx:id="customerIdCol" prefWidth="75.0" text="ID" />
-                      <TableColumn fx:id="customerNameCol" prefWidth="199.0" text="Name" />
-                        <TableColumn fx:id="customerAddressCol" prefWidth="167.0" text="Address" />
-                        <TableColumn fx:id="customerPostCol" prefWidth="119.0" text="Post Code" />
-                        <TableColumn fx:id="customerPhoneCol" prefWidth="174.0" text="Phone" />
-                    </columns>
-                  </TableView>
-                  <Label layoutX="454.0" layoutY="62.0" text="Customers" textFill="#979797">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="addCustomerBtn" layoutX="129.0" layoutY="320.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="62.0" styleClass="btnCreate" text="Add" />
-                  <Button fx:id="editCustomerBtn" layoutX="215.0" layoutY="320.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="58.0" styleClass="btnModify" text="Edit" />
-                  <Button fx:id="deleteCustomerBtn" layoutX="786.0" layoutY="320.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" styleClass="btnDelete" text="Remove" />
-               </children>
-            </Group>
-            <Button fx:id="btnReports" layoutX="84.0" layoutY="48.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="102.0" styleClass="btnCreate" text="Reports" />
-         </children>
+            <Button fx:id="addAppBtn" layoutY="280.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0"
+                    styleClass="btnCreate" text="Add"/>
+            <Button fx:id="editAppBtn" layoutX="88.0" layoutY="280.0" mnemonicParsing="false" prefHeight="25.0"
+                    prefWidth="78.0" styleClass="btnModify" text="Edit"/>
+            <Button fx:id="cancelAptBtn" layoutX="890.0" layoutY="280.0" mnemonicParsing="false" prefHeight="25.0"
+                    prefWidth="102.0" styleClass="btnDelete" text="Cancel"/>
+        </Group>
+        <Group layoutX="126.0" layoutY="64.0">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="312.0" layoutX="96.0" layoutY="46.0"
+                       stroke="DODGERBLUE" strokeType="INSIDE" width="804.0"/>
+            <TableView fx:id="customerTable" layoutX="131.0" layoutY="102.0" prefHeight="200.0" prefWidth="735.0">
+                <columns>
+                    <TableColumn fx:id="customerIdCol" prefWidth="75.0" text="ID"/>
+                    <TableColumn fx:id="customerNameCol" prefWidth="199.0" text="Name"/>
+                    <TableColumn fx:id="customerAddressCol" prefWidth="167.0" text="Address"/>
+                    <TableColumn fx:id="customerPostCol" prefWidth="119.0" text="Post Code"/>
+                    <TableColumn fx:id="customerPhoneCol" prefWidth="174.0" text="Phone"/>
+                </columns>
+            </TableView>
+            <Label layoutX="454.0" layoutY="62.0" text="Customers" textFill="#979797">
+                <font>
+                    <Font size="18.0"/>
+                </font>
+            </Label>
+            <Button fx:id="addCustomerBtn" layoutX="129.0" layoutY="320.0" mnemonicParsing="false"
+                    prefHeight="25.0" prefWidth="62.0" styleClass="btnCreate" text="Add"/>
+            <Button fx:id="editCustomerBtn" layoutX="215.0" layoutY="320.0" mnemonicParsing="false"
+                    prefHeight="25.0" prefWidth="58.0" styleClass="btnModify" text="Edit"/>
+            <Button fx:id="deleteCustomerBtn" layoutX="786.0" layoutY="320.0" mnemonicParsing="false"
+                    prefHeight="25.0" prefWidth="78.0" styleClass="btnDelete" text="Remove"/>
+        </Group>
+        <Button fx:id="btnReports" layoutX="84.0" layoutY="48.0" mnemonicParsing="false" prefHeight="36.0"
+                prefWidth="102.0" styleClass="btnCreate" text="Reports"/>
     </AnchorPane>
-  </children>
 </VBox>

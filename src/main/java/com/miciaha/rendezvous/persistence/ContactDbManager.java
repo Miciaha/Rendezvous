@@ -19,7 +19,7 @@ public class ContactDbManager implements DbManager<Contact> {
     }
 
     /**
-     * Get contact contact.
+     * Get contact.
      *
      * @param contactID the contact id
      * @return the contact

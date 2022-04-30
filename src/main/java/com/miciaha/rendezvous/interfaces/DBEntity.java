@@ -9,5 +9,5 @@ public interface DBEntity {
      *
      * @return the id
      */
-    int getID();
+    int getId();
 }

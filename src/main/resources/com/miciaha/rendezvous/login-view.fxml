@@ -18,10 +18,10 @@
       xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.miciaha.rendezvous.controllers.LoginViewController">
    <VBox prefHeight="200.0" prefWidth="100.0">
-      <AnchorPane fx:id="anchorPane" prefHeight="725.0" prefWidth="369.0">
+      <AnchorPane prefHeight="725.0" prefWidth="369.0">
          <Rectangle height="725.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="371.0">
             <fill>
-               <LinearGradient endX="1.0" endY="1.0">
+               <LinearGradient>
                   <stops>
                      <Stop>
                         <color>

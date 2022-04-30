@@ -31,11 +31,11 @@ public class MainViewController implements Initializable {
     /**
      * The Customers.
      */
-    public static ObservableList<Customer> customers = CustomerData.customerList;
+    public static final ObservableList<Customer> customers = CustomerData.customerList;
     /**
      * The Appointments.
      */
-    public static ObservableList<Appointment> appointments = AppointmentData.appointmentList;
+    public static final ObservableList<Appointment> appointments = AppointmentData.appointmentList;
 
     /**
      * The Appoint view.
@@ -264,7 +264,7 @@ public class MainViewController implements Initializable {
             upcomingAptGroup.setVisible(true);
             String date = LocaleHandler.DateTimeHelper.formatDate(appointment.getStart());
             String time = LocaleHandler.DateTimeHelper.formatTime(appointment.getStart());
-            String notification = date + ": Appointment [" + appointment.getID() + "] starting at " + time;
+            String notification = date + ": Appointment [" + appointment.getId() + "] starting at " + time;
 
             upcomingAptLabel.textProperty().setValue(notification);
         } else {

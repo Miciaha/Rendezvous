@@ -14,7 +14,7 @@ public class ContactData {
     /**
      * The Contacts list.
      */
-    public static ObservableList<Contact> contactsList = ContactDbManager.getAllContacts();
+    public static final ObservableList<Contact> contactsList = ContactDbManager.getAllContacts();
 
     /**
      * Get contact names list observable list.
@@ -38,14 +38,14 @@ public class ContactData {
     public static int getContactID(String name) {
         for (Contact contact : contactsList) {
             if (Objects.equals(contact.getName(), name)) {
-                return contact.getID();
+                return contact.getId();
             }
         }
         return 0;
     }
 
     /**
-     * Get contact contact.
+     * Get contact.
      *
      * @param name the name
      * @return the contact

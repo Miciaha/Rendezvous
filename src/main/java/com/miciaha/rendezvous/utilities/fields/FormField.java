@@ -13,17 +13,17 @@ public class FormField<T> {
     /**
      * The Field.
      */
-    public T field;
+    public final T field;
 
     /**
      * The Text field error label.
      */
-    public Label textFieldErrorLabel;
+    public final Label textFieldErrorLabel;
 
     /**
      * The Field type.
      */
-    public FieldType fieldType;
+    public final FieldType fieldType;
 
     /**
      * Instantiates a new Form field.
