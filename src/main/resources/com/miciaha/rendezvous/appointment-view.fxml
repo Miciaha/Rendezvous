@@ -12,68 +12,65 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="450.0" prefWidth="412.0" stylesheets="@assets/main.css" xmlns="http://javafx.com/javafx/18"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.miciaha.rendezvous.controllers.AppointmentViewController">
+<VBox prefHeight="530.0" prefWidth="412.0" stylesheets="@assets/main.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.miciaha.rendezvous.controllers.AppointmentViewController">
    <AnchorPane VBox.vgrow="ALWAYS">
       <Group>
-         <Rectangle fill="DODGERBLUE" height="56.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0"
-                    width="412.0"/>
-         <Text fill="WHITE" layoutX="128.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0"
-               text="Appointment Form">
+         <Rectangle fill="DODGERBLUE" height="56.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="412.0" />
+         <Text fill="WHITE" layoutX="128.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Appointment Form">
             <font>
-               <Font size="18.0"/>
+               <Font size="18.0" />
             </font>
          </Text>
       </Group>
-      <Group layoutX="18.0" layoutY="97.0">
-         <TextField fx:id="titleTF" layoutY="-2.0"/>
-         <Text layoutX="1.0" layoutY="-8.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title"/>
-         <Label fx:id="titleErrorLabel" layoutX="1.0" layoutY="25.0" styleClass="error-label" text="Label"/>
+      <Group layoutX="187.0" layoutY="67.0">
+         <children>
+            <TextField fx:id="idTF" disable="true" editable="false" layoutY="-2.0" prefHeight="25.0" prefWidth="58.0" />
+            <Text fill="#d0d0d0" layoutX="-21.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
+            <Label fx:id="titleErrorLabel1" layoutX="1.0" layoutY="25.0" styleClass="error-label" text="Label" />
+         </children>
       </Group>
-      <Group layoutX="208.0" layoutY="97.0">
-         <TextField fx:id="descriptionTF" prefHeight="25.0" prefWidth="187.0"/>
-         <Text layoutX="1.0" layoutY="-8.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description"/>
-         <Label fx:id="descriptionErrorLabel" layoutX="1.0" layoutY="25.0" styleClass="error-label" text="Label"/>
+      <Group layoutX="38.0" layoutY="127.0">
+         <TextField fx:id="titleTF" layoutY="-2.0" />
+         <Text layoutX="1.0" layoutY="-8.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title" />
+         <Label fx:id="titleErrorLabel" layoutX="1.0" layoutY="25.0" styleClass="error-label" text="Label" />
       </Group>
-      <Group layoutX="18.0" layoutY="167.0">
-         <TextField fx:id="locationTF"/>
-         <Text layoutX="1.0" layoutY="-8.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location"/>
-         <Label fx:id="locationErrorLabel" layoutX="1.0" layoutY="25.0" styleClass="error-label" text="Label"/>
+      <Group layoutX="228.0" layoutY="127.0">
+         <TextField fx:id="descriptionTF" prefHeight="25.0" prefWidth="150.0" />
+         <Text layoutX="1.0" layoutY="-8.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" />
+         <Label fx:id="descriptionErrorLabel" layoutX="1.0" layoutY="25.0" styleClass="error-label" text="Label" />
       </Group>
-      <Group layoutX="208.0" layoutY="167.0">
-         <TextField fx:id="typeTF"/>
-         <Text layoutX="1.0" layoutY="-8.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type"/>
-         <Label fx:id="typeErrorLabel" layoutX="1.0" layoutY="25.0" styleClass="error-label" text="Label"/>
+      <Group layoutX="38.0" layoutY="197.0">
+         <TextField fx:id="locationTF" />
+         <Text layoutX="1.0" layoutY="-8.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location" />
+         <Label fx:id="locationErrorLabel" layoutX="1.0" layoutY="25.0" styleClass="error-label" text="Label" />
       </Group>
-      <Group layoutX="17.0" layoutY="235.0">
-         <Text layoutX="1.0" layoutY="-7.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer"/>
-         <ComboBox fx:id="customerCmb" prefWidth="150.0"/>
-         <Label fx:id="customerErrorLabel" alignment="CENTER" layoutY="28.0" prefHeight="20.0" prefWidth="152.0"
-                styleClass="error-label" text="Error Label"/>
+      <Group layoutX="228.0" layoutY="197.0">
+         <TextField fx:id="typeTF" />
+         <Text layoutX="1.0" layoutY="-8.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type" />
+         <Label fx:id="typeErrorLabel" layoutX="1.0" layoutY="25.0" styleClass="error-label" text="Label" />
       </Group>
-      <Group layoutX="207.0" layoutY="235.0">
-         <Text layoutX="1.0" layoutY="-7.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact"/>
-         <ComboBox fx:id="contactCmb" prefWidth="150.0"/>
-         <Label fx:id="contactErrorLabel" alignment="CENTER" layoutY="25.0" prefHeight="20.0" prefWidth="185.0"
-                styleClass="error-label" text="Error Label"/>
+      <Group layoutX="37.0" layoutY="265.0">
+         <Text layoutX="1.0" layoutY="-7.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer" />
+         <ComboBox fx:id="customerCmb" prefWidth="150.0" />
+         <Label fx:id="customerErrorLabel" alignment="CENTER" layoutY="28.0" prefHeight="20.0" prefWidth="152.0" styleClass="error-label" text="Error Label" />
       </Group>
-      <Group layoutX="65.0" layoutY="316.0">
-         <Text layoutX="16.0" layoutY="-21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date"/>
-         <DatePicker fx:id="datePicker" layoutX="-46.0" layoutY="-10.0" prefHeight="25.0" prefWidth="146.0"/>
-         <Label fx:id="dateErrorLabel" alignment="CENTER" layoutX="-45.0" layoutY="17.0" prefHeight="20.0"
-                prefWidth="153.0" styleClass="error-label" text="Error Label"/>
+      <Group layoutX="227.0" layoutY="265.0">
+         <Text layoutX="1.0" layoutY="-7.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact" />
+         <ComboBox fx:id="contactCmb" prefWidth="150.0" />
+         <Label fx:id="contactErrorLabel" alignment="CENTER" layoutY="25.0" prefHeight="20.0" prefWidth="185.0" styleClass="error-label" text="Error Label" />
       </Group>
-      <Group layoutX="184.0" layoutY="307.0">
-         <ComboBox fx:id="beginTimeCmb" layoutX="-5.0" prefHeight="25.0" prefWidth="98.0"
-                   promptText="Start (EST)"/>
-         <ComboBox fx:id="endTimeCmb" layoutX="115.0" prefHeight="25.0" prefWidth="99.0" promptText="End (EST)"/>
-         <Text layoutX="99.0" layoutY="16.05078125" strokeType="OUTSIDE" strokeWidth="0.0" text="-"/>
-         <Label fx:id="timeErrorLabel" alignment="CENTER" layoutX="20.0" layoutY="30.0" prefHeight="20.0"
-                prefWidth="153.0" styleClass="error-label" text="Error Label"/>
+      <Group layoutX="184.0" layoutY="343.0">
+         <Text layoutX="15.0" layoutY="-22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" />
+         <DatePicker fx:id="datePicker" layoutX="-46.0" layoutY="-10.0" prefHeight="25.0" prefWidth="146.0" />
+         <Label fx:id="dateErrorLabel" alignment="CENTER" layoutX="-45.0" layoutY="17.0" prefHeight="20.0" prefWidth="153.0" styleClass="error-label" text="Error Label" />
       </Group>
-      <Button fx:id="saveButton" layoutX="113.0" layoutY="386.0" mnemonicParsing="false" prefWidth="75.0"
-              styleClass="btnSave" text="Save"/>
-      <Button fx:id="cancelButton" layoutX="214.0" layoutY="386.0" mnemonicParsing="false" styleClass="btnCancel"
-              text="Cancel"/>
+      <Group layoutX="107.0" layoutY="384.0">
+         <ComboBox fx:id="beginTimeCmb" layoutX="-5.0" prefHeight="25.0" prefWidth="98.0" promptText="Start (EST)" />
+         <ComboBox fx:id="endTimeCmb" layoutX="115.0" prefHeight="25.0" prefWidth="99.0" promptText="End (EST)" />
+         <Text layoutX="94.0" layoutY="16.05078125" strokeType="OUTSIDE" strokeWidth="0.0" text="-" textAlignment="CENTER" wrappingWidth="19.798828125" />
+         <Label fx:id="timeErrorLabel" alignment="CENTER" layoutX="20.0" layoutY="30.0" prefHeight="20.0" prefWidth="153.0" styleClass="error-label" text="Error Label" />
+      </Group>
+      <Button fx:id="saveButton" layoutX="130.0" layoutY="460.0" mnemonicParsing="false" prefWidth="75.0" styleClass="btnSave" text="Save" />
+      <Button fx:id="cancelButton" layoutX="231.0" layoutY="460.0" mnemonicParsing="false" styleClass="btnCancel" text="Cancel" />
    </AnchorPane>
 </VBox>

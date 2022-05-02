@@ -58,19 +58,22 @@ public class AppointmentData {
                 var c = appointment.getStart();
                 var d = appointment.getEnd();
 
-                // There are three bad cases to consider:
-                // 1. Both the new appointment start and end times take place during the scheduled appointment:
+                // There are four bad cases to consider:
+                // 1. The new appointment is schedule within the existing appointment:
                 //          This can be written as (a <= c and b >= d)
-                // 2. The new appointment start time takes place during the scheduled appointment:
+                // 2. The new appointment begins before and ends after an existing appointment:
+                //          This can be written as (a > c and b < d)
+                // 3. The new appointment start time takes place during the scheduled appointment:
                 //          This can be written as (a <= c and b > c)
-                // 3. The new appointment end time takes place during the scheduled appointment:
+                // 4. The new appointment end time takes place during the scheduled appointment:
                 //          This can be written as (a < d and b >= d)
                 int compareAtoC = a.compareTo(c);
                 int compareAtoD = a.compareTo(d);
                 int compareBtoC = b.compareTo(c);
                 int compareBtoD = b.compareTo(d);
 
-                if((compareAtoC <= 0 && compareBtoD >= 0) ||(compareAtoC <= 0 && compareBtoC > 0)||(compareAtoD < 0 && compareBtoD >= 0))
+                if((compareAtoC <= 0 && compareBtoD >= 0) || (compareAtoC > 0 && compareBtoD < 0) ||
+                        (compareAtoC <= 0 && compareBtoC > 0) || (compareAtoD < 0 && compareBtoD >= 0))
             {
                     String startTime = LocaleHandler.DateTimeHelper.formatTime(x.getStart());
                     String endTime = LocaleHandler.DateTimeHelper.formatTime(x.getEnd());
@@ -143,12 +146,14 @@ public class AppointmentData {
      * @return the boolean
      */
     public static boolean updateAppointment(Appointment appointment) {
-        if (dbManager.Update(appointment)) {
-            for (Appointment x : appointmentList) {
-                if (x.getId() == appointment.getId()) {
-                    int index = appointmentList.indexOf(x);
-                    appointmentList.set(index, appointment);
-                    return true;
+        if (!hasTimeConflict(appointment)) {
+            if (dbManager.Update(appointment)) {
+                for (Appointment x : appointmentList) {
+                    if (x.getId() == appointment.getId()) {
+                        int index = appointmentList.indexOf(x);
+                        appointmentList.set(index, appointment);
+                        return true;
+                    }
                 }
             }
         }

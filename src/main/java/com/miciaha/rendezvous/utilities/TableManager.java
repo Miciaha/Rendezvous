@@ -13,7 +13,10 @@ import java.time.LocalDateTime;
 
 /**
  * The type Table manager handles linking tables to static and dynamic data.
- * The Table manager also handles the table search functionality.
+ *
+ * There are lambda functions used in virtually every method of this class to set the table value factories
+ *  to custom values. The alternative would be creating a new class for each individual column which would prove
+ *  laborious and time intensive.
  */
 public class TableManager {
 

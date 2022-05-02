@@ -107,7 +107,7 @@ public class FormManager {
          */
         public AppointmentForm(Button callBtn) {
             this.winSizeX = 410;
-            this.winSizeY = 450;
+            this.winSizeY = 530;
             this.winTitle = "Appointment Form";
             this.formFile = "appointment-view.fxml";
             this.callBtn = callBtn;

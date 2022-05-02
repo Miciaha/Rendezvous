@@ -43,13 +43,13 @@ public class CustomerViewController implements Initializable, FormEditor<Custome
     public TextField idTF;
 
     /**
-     * The Country cmb.
+     * The Country ComboBox.
      */
     @FXML
     public ComboBox<String> CountryCmb;
 
     /**
-     * The Division cmb.
+     * The Division ComboBox.
      */
     @FXML
     public ComboBox<String> DivisionCmb;
@@ -73,19 +73,19 @@ public class CustomerViewController implements Initializable, FormEditor<Custome
     public Label divisionErrorLabel;
 
     /**
-     * The Name tf.
+     * The Name TextField.
      */
     @FXML
     public TextField nameTF;
 
     /**
-     * The Address tf.
+     * The Address TextField.
      */
     @FXML
     public TextField addressTF;
 
     /**
-     * The City tf.
+     * The City TextField.
      */
     @FXML
     public TextField cityTF;
@@ -97,13 +97,13 @@ public class CustomerViewController implements Initializable, FormEditor<Custome
     public Label cityErrorLabel;
 
     /**
-     * The Post tf.
+     * The Post TextField.
      */
     @FXML
     public TextField postTF;
 
     /**
-     * The Phone tf.
+     * The Phone TextField.
      */
     @FXML
     public TextField phoneTF;

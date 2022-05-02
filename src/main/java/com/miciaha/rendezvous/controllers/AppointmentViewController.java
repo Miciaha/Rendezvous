@@ -30,7 +30,7 @@ import java.util.ResourceBundle;
  */
 public class AppointmentViewController implements Initializable, FormEditor<Appointment> {
     /**
-     * The Updating appointment.
+     * Boolean returning the forms purpose
      */
     protected boolean updatingAppointment = false;
     /**
@@ -60,7 +60,13 @@ public class AppointmentViewController implements Initializable, FormEditor<Appo
     public Label customerErrorLabel;
 
     /**
-     * The Title tf.
+     * The id TextField
+     */
+    @FXML
+    public TextField idTF;
+
+    /**
+     * The Title TextField.
      */
     @FXML
     public TextField titleTF;
@@ -72,7 +78,7 @@ public class AppointmentViewController implements Initializable, FormEditor<Appo
     public Label titleErrorLabel;
 
     /**
-     * The Description tf.
+     * The Description TextField.
      */
     @FXML
     public TextField descriptionTF;
@@ -84,7 +90,7 @@ public class AppointmentViewController implements Initializable, FormEditor<Appo
     public Label descriptionErrorLabel;
 
     /**
-     * The Location tf.
+     * The Location TextField.
      */
     @FXML
     public TextField locationTF;
@@ -96,7 +102,7 @@ public class AppointmentViewController implements Initializable, FormEditor<Appo
     public Label locationErrorLabel;
 
     /**
-     * The Type tf.
+     * The Type TextField.
      */
     @FXML
     public TextField typeTF;
@@ -132,32 +138,32 @@ public class AppointmentViewController implements Initializable, FormEditor<Appo
     public Button cancelButton;
 
     /**
-     * The Begin time cmb.
+     * The Begin time ComboBox.
      */
     @FXML
     public ComboBox<String> beginTimeCmb;
 
     /**
-     * The End time cmb.
+     * The End time ComboBox.
      */
     @FXML
     public ComboBox<String> endTimeCmb;
 
     /**
-     * The Contact cmb.
+     * The Contact ComboBox.
      */
     @FXML
     public ComboBox<String> contactCmb;
 
     /**
-     * The Customer cmb.
+     * The Customer ComboBox.
      */
     @FXML
     public ComboBox<String> customerCmb;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        endAppointment.add("10:00PM EST");
+        endAppointment.add("10:00PM");
         beginTimeCmb.setItems(startAppointment);
         endTimeCmb.setItems(endAppointment);
         customerCmb.setItems(CustomerData.getAllCustomerNames());
@@ -171,6 +177,7 @@ public class AppointmentViewController implements Initializable, FormEditor<Appo
     public void initData(Appointment appointment) {
 
         // Base appointment info
+        String id = String.valueOf(appointment.getId());
         String title = appointment.getTitle();
         String description = appointment.getDescription();
         String location = appointment.getLocation();
@@ -186,6 +193,7 @@ public class AppointmentViewController implements Initializable, FormEditor<Appo
         String startTime = appointment.getStart().toLocalTime().format(parser);
         String endTime = appointment.getEnd().toLocalTime().format(parser);
 
+        idTF.textProperty().setValue(id);
         titleTF.textProperty().setValue(title);
         descriptionTF.textProperty().setValue(description);
         locationTF.textProperty().setValue(location);
