@@ -17,6 +17,9 @@ Your company acquires Country and First-Level-Division data from a third party t
 | :heavy_check_mark:  | Displays the log-in form in English or French based on the user’s computer language setting            |
 | :heavy_check_mark:  | Translates error control messages into English or French based on the user’s computer language setting |
 
+![Login Screen](https://user-images.githubusercontent.com/14229230/166260336-8a59b71c-370c-436d-9a76-5b31ab7cc758.png)
+
+
 ### 2. Customers
 
 | Status              | Task                                                                           |
@@ -28,6 +31,12 @@ Your company acquires Country and First-Level-Division data from a third party t
 | :heavy_check_mark:  | All of the fields can be updated except for Customer_ID                        |
 | :heavy_check_mark:  | Customer data is displayed using a TableView                                   |
 | :heavy_check_mark:  | Message is displayed in the user interface when a customer is deleted          |
+
+![Create Customer Form](https://user-images.githubusercontent.com/14229230/166260506-28b66635-a82e-4d55-96ad-45acec0965c4.png)
+![Edit Customer Form](https://user-images.githubusercontent.com/14229230/166260711-a876bc1c-b7cb-48d0-b9b4-4ccdb969bc2f.png)
+![Customer Table](https://user-images.githubusercontent.com/14229230/166260902-50f700df-4a30-4355-a109-e3e57b7a10e2.png)
+
+
 
 ### 3. Appointments
 
@@ -42,6 +51,12 @@ Your company acquires Country and First-Level-Division data from a third party t
 | :heavy_check_mark:  | Allow user to view appointment schedules by month and week                 |
 | :heavy_check_mark:  | Allow user to adjust appointment times                                     |
 
+![Create Appointment Form](https://user-images.githubusercontent.com/14229230/166264818-1e88d36d-ace3-413a-9503-2cd9b0484b25.png)
+![Edit Appointment Form](https://user-images.githubusercontent.com/14229230/166265091-928e48ab-fbcd-469f-8503-e596a3c9f64f.png)
+![Upcoming Appointment and Tables](https://user-images.githubusercontent.com/14229230/166265381-bda551f9-446e-4954-ade4-bf5a26500a39.png)
+
+
+
 ### 4. Logical Error Checks
 
 | Status              | Logical Errors                                                                                                 |
@@ -50,6 +65,10 @@ Your company acquires Country and First-Level-Division data from a third party t
 | :heavy_check_mark:  | Scheduling overlapping appointments for customers                                                              |
 | :heavy_check_mark:  | Entering an incorrect username and password                                                                    |
 
+![Incorrect username and password](https://user-images.githubusercontent.com/14229230/166265954-a7d02438-5d2b-45b0-bf66-39f933f8e2f9.png)
+![Scheduling conflict](https://user-images.githubusercontent.com/14229230/166266934-5d3436fa-a562-4f2a-bfd4-a27b491f5455.png)
+
+
 ### 5. Reports
 
 | Status              | Description                                                                                                                                                       |
@@ -57,6 +76,9 @@ Your company acquires Country and First-Level-Division data from a third party t
 | :heavy_check_mark:  | Total number of customer appointments by type and month                                                                                                           |
 | :heavy_check_mark:  | Schedule for each contact in your organization that includes appointment ID, title, type and description, start date and time, end date and time, and customer ID |
 | :heavy_check_mark:  | Security report: application entry attempts                                                                                                                       |
+
+![Reports Dashboard](https://user-images.githubusercontent.com/14229230/166268324-319fee26-8d3f-40af-9307-70d3c55b8ced.png)
+
 
 ### 6. Final Tasks
 
